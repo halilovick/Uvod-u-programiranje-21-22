@@ -1,0 +1,71 @@
+#include <stdio.h>
+
+char *okreni(char *s) {
+  int a = 0, i, pomak = 0;
+  char *p = s;
+  char temp;
+  char *x;
+  while (*s != '\0') {
+    a++;
+    s++;
+  }
+  for (i = 0; i < a; i++) {
+    s--;
+  }
+  if (a == 1) {
+    return s;
+  }
+  if (a % 2 == 0) {
+    x = s + (int)(a / 2) - 1;
+    p = x;
+    while (pomak != a / 4) {
+      temp = *p;
+      *p = *s;
+      *s = temp;
+      s++;
+      p--;
+      pomak++;
+    }
+    s -= pomak;
+    p = x + 1;
+    s += (a - 1);
+    pomak = 0;
+    while (pomak != a / 4) {
+      temp = *p;
+      *p = *s;
+      *s = temp;
+      s--;
+      p++;
+      pomak++;
+    }
+    s += pomak;
+    s -= (a - 1);
+  } else {
+    x = s + (int)(a / 2) - 1;
+    p = x;
+    while (p != s) {
+      temp = *p;
+      *p = *s;
+      *s = temp;
+      s++;
+      p--;
+      pomak++;
+    }
+    s -= pomak;
+    p = x + 2;
+    s += a - 1;
+    pomak = 0;
+    while (p != s) {
+      temp = *p;
+      *p = *s;
+      *s = temp;
+      s--;
+      p++;
+      pomak++;
+    }
+    s -= (pomak + a / 2 + 1);
+  }
+  return s;
+}
+
+int main() {}

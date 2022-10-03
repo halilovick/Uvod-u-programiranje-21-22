@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <string.h>
+
+char *izbaci_viska_razmake(char *str) {
+  char *pok1 = str;
+  char *pok2 = str;
+  int duzina = strlen(str);
+  if (duzina <= 1) {
+    return str;
+  }
+  while (*pok1 != '\0') {
+    if (*pok1 == ' ') {
+      if (*pok1 != *str) {
+        *pok2 = *pok1;
+        pok1++;
+        pok2++;
+      }
+      while (*pok1 == ' ') {
+        pok1++;
+      }
+    } else {
+      *pok2 = *pok1;
+      pok1++;
+      pok2++;
+    }
+  }
+  pok2--;
+  if (*pok2 != ' ') {
+    pok2++;
+  }
+  *pok2 = '\0';
+  return str;
+}
+
+int main() {}

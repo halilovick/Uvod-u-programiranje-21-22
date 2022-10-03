@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <string.h>
+
+void unesi(char *niz, int vel) {
+  int i = 0;
+  char z = getchar();
+  if (z == '\n') {
+    z = getchar();
+  }
+  while (z != '\n' && i < vel - 1) {
+    niz[i] = z;
+    i++;
+    z = getchar();
+  }
+  niz[i] = '\0';
+}
+
+const char *posljednja_rijec(const char *s) {
+  int duzina = strlen(s);
+  const char *p = s + duzina - 1;
+  if (strrchr(s, ' ')) {
+    while (*p == ' ') {
+      p--;
+    }
+    while (*p != ' ') {
+      p--;
+    }
+    p++;
+    return p;
+  } else {
+    return s;
+  }
+}
+
+int main() {
+  char tekst[100];
+  printf("Unesite neku recenicu: ");
+  unesi(tekst, 100);
+  printf("Posljednja rijec je: '%s'\n", posljednja_rijec(tekst));
+  return 0;
+}

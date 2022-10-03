@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+int pronadji_posljednji(const char *str, char *trazi) {
+  int duzina1 = 0, duzina2 = 0;
+  int indeks, a = 0;
+  while (*str != '\0') {
+    duzina1++;
+    str++;
+  }
+  while (*trazi != '\0') {
+    duzina2++;
+    trazi++;
+  }
+  int vel2 = duzina2;
+  while (vel2 > 0) {
+    trazi--;
+    vel2--;
+  }
+  indeks = duzina1;
+  int x = 0;
+  while (a != duzina2) {
+    while (*str != *trazi) {
+      str--;
+      indeks--;
+      x++;
+      if (x > duzina1) {
+        return -1;
+      }
+    }
+    while (*str == *trazi) {
+      a++;
+      str++;
+      trazi++;
+      if (a == duzina2) {
+        break;
+      }
+    }
+  }
+  return indeks;
+}
+
+int main() {}

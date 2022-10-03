@@ -1,0 +1,44 @@
+#include <ctype.h>
+#include <stdio.h>
+#include <string.h>
+
+int je_li_palindrom(const char *str) {
+  int duzina, slova = 0;
+  duzina = strlen(str);
+  const char *pocetak = str;
+  const char *kraj = pocetak + duzina - 1;
+  const char *pok = str;
+  while (*pok != '\0') {
+    if ((*pok > 64 && *pok < 91) || (*pok > 96 && *pok < 123)) {
+      slova++;
+    }
+    pok++;
+  }
+  if (slova == 0) {
+    return 0;
+  }
+  for (pocetak = str; kraj >= pocetak;) {
+    while ((*kraj < 65 || *kraj > 90) && (*kraj < 97 || *kraj > 122) &&
+           (*kraj < 48 || *kraj > 57)) {
+      kraj--;
+    }
+    while ((*pocetak < 65 || *pocetak > 90) &&
+           (*pocetak < 97 || *pocetak > 122) &&
+           (*pocetak < 48 || *pocetak > 57)) {
+      pocetak++;
+    }
+    if (tolower(*kraj) == tolower(*pocetak)) {
+      kraj--;
+      pocetak++;
+    } else {
+      break;
+    }
+  }
+  if (pocetak > kraj) {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
+int main() {}

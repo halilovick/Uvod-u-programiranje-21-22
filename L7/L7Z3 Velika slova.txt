@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+void unesi(char *niz, int vel) {
+  int i = 0;
+  char z = getchar();
+  if (z == '\n') {
+    z = getchar();
+  }
+  while (z != '\n' && i < vel - 1) {
+    niz[i] = z;
+    i++;
+    z = getchar();
+  }
+  niz[i] = '\0';
+}
+
+char *velika(char *s) {
+  int a = 0;
+  while (*s != '\0') {
+    if (*s >= 'a' && *s <= 'z') {
+      *s = *s - 32;
+    }
+    s++;
+    a++;
+  }
+  s -= a;
+  return s;
+}
+
+int main() {
+  char tekst[100];
+  printf("Unesite neki tekst: ");
+  unesi(tekst, 100);
+  printf("Velikim slovima: %s\n", velika(tekst));
+  return 0;
+}

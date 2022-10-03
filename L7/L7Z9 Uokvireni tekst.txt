@@ -1,0 +1,81 @@
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void uokvireno(const char *tekst, int sirina) {
+  const char *p1 = tekst;
+  const char *p2 = tekst;
+  const char *p3;
+  const char *p4;
+  int i, a = 0, sirina2, duzina, brojRazmaka, brojRazmaka1, brojRazmaka2,
+         ukupnaDuzina1 = strlen(tekst), ukupnaDuzina2 = 0, x = 1;
+  if (sirina < 6) {
+    goto kraj;
+  }
+  for (i = 0; i < sirina; i++) {
+    printf("*");
+  }
+  printf("\n");
+  while (ukupnaDuzina1 > ukupnaDuzina2) {
+    sirina2 = sirina - 4;
+    p3 = p2;
+    p4 = p2;
+    while (sirina2 > 0) {
+      p1++;
+      sirina2--;
+      if (*p1 == ' ') {
+        p2 = p1;
+        x = 0;
+      } else if (*p1 == '\0') {
+        p1--;
+        p2 = p3;
+        p4 = p1;
+        p4++;
+        x = 0;
+      }
+    }
+    if (p2 == p4) {
+      x = 1;
+    }
+    duzina = p2 - p4;
+    duzina = abs(duzina);
+    if (x == 1) {
+      duzina = sirina - 5;
+    }
+    p1 = p3;
+    ukupnaDuzina2 += duzina;
+    brojRazmaka = (sirina - duzina - 4);
+    brojRazmaka1 = (int)(brojRazmaka / 2);
+    brojRazmaka2 = brojRazmaka - brojRazmaka1;
+    printf("* ");
+    for (i = 0; i < brojRazmaka1; i++) {
+      printf(" ");
+    }
+    printf("%.*s", duzina, p1);
+    if (ukupnaDuzina2 < ukupnaDuzina1 && x == 1) {
+      printf("-");
+      brojRazmaka2--;
+    }
+    for (i = 0; i < brojRazmaka2; i++) {
+      printf(" ");
+    }
+    printf(" *\n");
+    if (x == 0) {
+      ukupnaDuzina2++;
+      p2++;
+    }
+    p1 = p2;
+    if (x == 1) {
+      p1 += duzina;
+      p2 += duzina;
+    }
+  }
+  for (i = 0; i < sirina; i++) {
+    printf("*");
+  }
+kraj:
+  return;
+}
+
+int main() {}
