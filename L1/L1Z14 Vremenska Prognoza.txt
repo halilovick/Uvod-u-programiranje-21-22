@@ -1,0 +1,104 @@
+#include <stdio.h>
+
+int main() {
+  int st, mt, bt;
+  char sp, mp, bp;
+  printf("Unesite prognozu za Sarajevo:\n");
+  printf("Temperatura: ");
+  scanf("%d", &st);
+  printf("Padavine (D/N): ");
+  scanf(" %c", &sp);
+  if (sp == 'd' || sp == 'D' || sp == 'n' || sp == 'N') {
+    printf("Unesite prognozu za Mostar:\n");
+    printf("Temperatura: ");
+    scanf("%d", &mt);
+    printf("Padavine (D/N): ");
+    scanf(" %c", &mp);
+    if (mp == 'd' || mp == 'D' || mp == 'n' || mp == 'N') {
+    printf("Unesite prognozu za Bihac:\n");
+    printf("Temperatura: ");
+    scanf("%d", &bt);
+    printf("Padavine (D/N): ");
+    scanf(" %c", &bp);
+    if (bp == 'd' || bp == 'D' || bp == 'n' || bp == 'N'){
+        if((sp == 'n' || sp == 'N') && ((st>-5 && st<5) || (st>20 && st<30))){
+                    printf("Drugarice idu u Sarajevo.");
+                    return 0;
+        }
+        else if((mp == 'n' || mp == 'N') && ((mt>-5 && mt<5) || (mt>20 && mt<30))){
+                    printf("Drugarice idu u Mostar.");
+                    return 0;
+        }
+        else if((bp == 'n' || bp == 'N') && ((bt>-5 && bt<5) || (bt>20 && bt<30))){
+                    printf("Drugarice idu u Bihac.");
+                    return 0;
+        }
+        else if((sp == 'n' || sp == 'N') && (st>5 && st<30)){
+                    printf("Anja i Elma mogu u Sarajevo.");
+                    return 0;
+        }
+        else if((sp == 'd' || sp == 'D') && (st>-5 && st<=0)){
+                    printf("Anja i Elma mogu u Sarajevo.");
+                    return 0;
+        }
+        else if((sp == 'n' || sp == 'N') && (st>20)){
+                    printf("Anja i Una mogu u Sarajevo.");
+                    return 0;
+        }
+        else if((sp == 'n' || sp == 'N') && (st>-5 && st<30)){
+                    printf("Elma i Una mogu u Sarajevo.");
+                    return 0;
+        }
+        else if((mp == 'n' || mp == 'N') && (mt>5 && mt<30)){
+                    printf("Anja i Elma mogu u Mostar.");
+                    return 0;
+        }
+        else if((mp == 'd' || mp == 'D') && (mt>-5 && mt<=0)){
+                    printf("Anja i Elma mogu u Mostar.");
+                    return 0;
+        }
+        else if((mp == 'n' || mp == 'N') && (mt>20)){
+                    printf("Anja i Una mogu u Mostar.");
+                    return 0;
+        }
+        else if((mp == 'n' || mp == 'N') && (mt>-5 && mt<30)){
+                    printf("Elma i Una mogu u Mostar.");
+                    return 0;
+        }
+        else if((bp == 'n' || bp == 'N') && (bt>5 && bt<30)){
+                    printf("Anja i Elma mogu u Bihac.");
+                    return 0;
+        }
+        else if((bp == 'd' || bp == 'D') && (bt>-5 && bt<=0)){
+                    printf("Anja i Elma mogu u Bihac.");
+                    return 0;
+        }
+        else if((bp == 'n' || bp == 'N') && (bt>20)){
+                    printf("Anja i Una mogu u Bihac.");
+                    return 0;
+        }
+        else if((bp == 'n' || bp == 'N') && (bt>-5 && bt<30)){
+                    printf("Elma i Una mogu u Bihac.");
+                    return 0;
+        }
+        else{
+            printf("Ne odgovara niti jedan grad.");
+            return 0;
+        }
+    }
+    else{
+        printf("Pogresan unos.");
+        return 0;
+    }
+    }
+    else{
+        printf("Pogresan unos.");
+        return 0;
+    }
+  }
+    else{
+        printf("Pogresan unos.");
+        return 0;
+  }
+  return 0;
+}

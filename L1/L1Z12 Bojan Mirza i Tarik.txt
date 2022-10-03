@@ -1,0 +1,228 @@
+#include <stdio.h>
+
+int main() {
+    double tp1, tp2, tp, tz, tzi, mp1, mp2, mp, mz, mzi,bp1, bp2, bp, bz, bzi;
+	printf("Unesite bodove za Tarika:\n");
+    printf("I parcijalni ispit: ");
+    scanf("%lf",&tp1);
+    if((tp1<0) || (tp1>20)){
+        printf("Neispravan broj bodova");
+        return 0;
+    }
+    else{
+    printf("II parcijalni ispit: ");
+    scanf("%lf",&tp2);
+    if((tp2<0) || (tp2>20)){
+        printf("Neispravan broj bodova");
+        return 0;
+    }
+    else{
+    printf("Prisustvo: ");
+    scanf("%lf",&tp);
+    if((tp<0) || (tp>10)){
+        printf("Neispravan broj bodova");
+        return 0;
+    }
+    else{
+    printf("Zadace: ");
+    scanf("%lf",&tz);
+    if((tz<0) || (tz>10)){
+        printf("Neispravan broj bodova");
+        return 0;
+    }
+    else{
+    printf("Zavrsni ispit: ");
+    scanf("%lf",&tzi);
+    if((tzi<0) || (tzi>40)){
+        printf("Neispravan broj bodova");
+        return 0;
+    }
+    else{
+	printf("Unesite bodove za Bojana:\n");
+    printf("I parcijalni ispit: ");
+    scanf("%lf",&bp1);
+    if((bp1<0) || (bp1>20)){
+        printf("Neispravan broj bodova");
+        return 0;
+    }
+    else{
+    printf("II parcijalni ispit: ");
+    scanf("%lf",&bp2);
+    if((bp2<0) || (bp2>20)){
+        printf("Neispravan broj bodova");
+        return 0;
+    }
+    else{
+    printf("Prisustvo: ");
+    scanf("%lf",&bp);
+    if((bp<0) || (bp>10)){
+        printf("Neispravan broj bodova");
+        return 0;
+    }
+    else{
+    printf("Zadace: ");
+    scanf("%lf",&bz);
+    if((bz<0) || (bz>10)){
+        printf("Neispravan broj bodova");
+        return 0;
+    }
+    else{
+    printf("Zavrsni ispit: ");
+    scanf("%lf",&bzi);
+    if((bzi<0) || (bzi>40)){
+        printf("Neispravan broj bodova");
+        return 0;
+    }
+    else{
+	printf("Unesite bodove za Mirzu:\n");
+    printf("I parcijalni ispit: ");
+    scanf("%lf",&mp1);
+    if((mp1<0) || (mp1>20)){
+        printf("Neispravan broj bodova");
+        return 0;
+    }
+    else{
+    printf("II parcijalni ispit: ");
+    scanf("%lf",&mp2);
+    if((mp2<0) || (mp2>20)){
+        printf("Neispravan broj bodova");
+        return 0;
+    }
+    else{
+    printf("Prisustvo: ");
+    scanf("%lf",&mp);
+    if((mp<0) || (mp>10)){
+        printf("Neispravan broj bodova");
+        return 0;
+    }
+    else{
+    printf("Zadace: ");
+    scanf("%lf",&mz);
+    if((mz<0) || (mz>10)){
+        printf("Neispravan broj bodova");
+        return 0;
+    }
+    else{
+    printf("Zavrsni ispit: ");
+    scanf("%lf",&mzi);
+    if((mzi<0) || (mzi>40)){
+        printf("Neispravan broj bodova");
+        return 0;
+    }
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+    double tu,bu,mu,t,m,b;
+    tu = tp1 + tp2 + tp + tz + tzi;
+    mu = mp1 + mp2 + mp + mz + mzi;
+    bu = bp1 + bp2 + bp + bz + bzi;
+    if((tu>=55) && (tu<65)){
+        t=6;
+    }
+    else if((tu>=65) && (tu<75)){
+        t=7;
+    }
+    else if((tu>=75) && (tu<85)){
+        t=8;
+    }
+    else if((tu>=85) && (tu<92)){
+        t=9;
+    }
+    else if((tu>=92) && (tu<=100)){
+        t=10;
+    }
+    else{
+        t=0;
+    }
+
+    if((mu>=55) && (mu<65)){
+        m=6;
+    }
+    else if((mu>=65) && (mu<75)){
+        m=7;
+    }
+    else if((mu>=75) && (mu<85)){
+        m=8;
+    }
+    else if((mu>=85) && (mu<92)){
+        m=9;
+    }
+    else if((mu>=92) && (mu<=100)){
+        m=10;
+    }
+    else{
+        m=0;
+    }
+
+    if((bu>=55) && (bu<65)){
+        b=6;
+    }
+    else if((bu>=65) && (bu<75)){
+        b=7;
+    }
+    else if((bu>=75) && (bu<85)){
+        b=8;
+    }
+    else if((bu>=85) && (bu<92)){
+        b=9;
+    }
+    else if((bu>=92) && (bu<=100)){
+        b=10;
+    }
+    else{
+        b=0;
+    }
+    if((t>5) && (m>5) && (b>5)){
+        printf("Sva tri studenta su polozila.\n");
+    }
+    else if((t>5) && (m>5) && (b<6)){
+        printf("Dva studenta su polozila.\n");
+    }
+    else if((t>5) && (m<6) && (b>5)){
+        printf("Dva studenta su polozila.\n");
+    }
+    else if((t<6) && (m>5) && (b>5)){
+        printf("Dva studenta su polozila.\n");
+    }
+    else if((t>5) && (m<6) && (b<6)){
+        printf("Jedan student je polozio.\n");
+    }
+    else if((t<6) && (m>5) && (b<6)){
+        printf("Jedan student je polozio.\n");
+    }
+    else if((t<6) && (m<6) && (b>5)){
+        printf("Jedan student je polozio.\n");
+    }
+    else if((t<6) && (m<6) && (b<6)){
+        printf("Nijedan student nije polozio.\n");
+    }
+    if((t>5) && (m>5) && (b>5)){
+        if((t==m) && (m==b)){
+            printf("Sva tri studenta imaju istu ocjenu.");
+        }
+        else if((t==m) && (t!=b)){
+            printf("Dva od tri studenta imaju istu ocjenu.");
+        }
+        else if((t==b) && (t!=m)){
+            printf("Dva od tri studenta imaju istu ocjenu.");
+        }
+        else if((b==m) && (b!=t)){
+            printf("Dva od tri studenta imaju istu ocjenu.");
+        }
+        else if((b!=m) && (m!=t)){
+            printf("Svaki student ima razlicitu ocjenu.");
+        }
+    }
+    return 0;
+}

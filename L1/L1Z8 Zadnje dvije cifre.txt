@@ -1,0 +1,55 @@
+#include <stdio.h>
+
+int main() {
+    int a,b,c,d,e,y;
+    double z,x,f;
+	printf("Unesite cijeli broj: ");
+    scanf("%d",&a);
+    if(a<=9 && a>0){
+        b=0;
+        c = a + b;
+        printf("Zbir zadnje dvije cifre (%d i %d) je: %d\n", b,a,c);
+        d = b - a;
+        printf("Razlika zadnje dvije cifre (%d i %d) je: %d\n", b,a,d);
+        e = a * b;
+        printf("Proizvod zadnje dvije cifre (%d i %d) je: %d\n", b,a,e);
+        f = b / a;
+        printf("Kolicnik zadnje dvije cifre (%d i %d) je: %f\n", b,a,f);
+    }
+    else if(a<=0.0){
+        y = a * (-1);
+        z = y % 100 / 10;
+        x = y % 10;
+        c = z + x;
+        printf("Zbir zadnje dvije cifre (%g i %g) je: %d\n", z,x,c);
+        d = z - x;
+        printf("Razlika zadnje dvije cifre (%g i %g) je: %d\n", z,x,d);
+        e = z * x;
+        printf("Proizvod zadnje dvije cifre (%g i %g) je: %d\n", z,x,e);
+        if (x==0){
+            printf("Kolicnik zadnje dvije cifre (%g i %g) je: Nemoguce!\n", z,x);
+        }
+        else{
+        f = z / x;
+        printf("Kolicnik zadnje dvije cifre (%g i %g) je: %f\n", z,x,f);
+        }
+    }
+    else{
+        z = a % 100 / 10;
+        x = a % 10;
+        c = z + x;
+        printf("Zbir zadnje dvije cifre (%g i %g) je: %d\n", z,x,c);
+        d = z - x;
+        printf("Razlika zadnje dvije cifre (%g i %g) je: %d\n", z,x,d);
+        e = z * x;
+        printf("Proizvod zadnje dvije cifre (%g i %g) je: %d\n", z,x,e);
+        if (x==0){
+            printf("Kolicnik zadnje dvije cifre (%g i %g) je: Nemoguce!\n", z,x);
+        }
+        else{
+        f = z / x;
+        printf("Kolicnik zadnje dvije cifre (%g i %g) je: %f\n", z,x,f);
+        }
+    }
+	return 0;
+}

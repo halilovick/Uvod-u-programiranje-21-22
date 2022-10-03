@@ -1,0 +1,121 @@
+#include <stdio.h>
+#include <math.h>
+
+#define Pi 3.1415926535
+#define E 0.0001
+
+int main() {
+    double x1, y1, x2, y2, x3, y3, a, b, c, d, e, P;
+	printf("Unesite koordinate tacke t1: ");
+    scanf("%lf %lf", &x1, &y1);
+    printf("Unesite koordinate tacke t2: ");
+    scanf("%lf %lf", &x2, &y2);
+    printf("Unesite koordinate tacke t3: ");
+    scanf("%lf %lf", &x3, &y3);
+    P = 0.5 * fabs(x1*(y2 - y3) + x2*(y3 - y1) + x3*(y1 - y2));
+    a=sqrt((x2 - x1)*(x2 - x1)+(y2 - y1)*(y2 - y1));
+    b=sqrt((x3 - x2)*(x3 - x2)+(y3 - y2)*(y3 - y2));
+    c=sqrt((x3 - x1)*(x3 - x1)+(y3 - y1)*(y3 - y1));
+    if (P==0){
+        printf("Linija\n");
+        printf("Najveci ugao ima 180 stepeni, 0 minuta i 0 sekundi.");
+        return 1;
+    }
+    if ((a==b==c)){
+        printf("Jednakostranicni\n");
+        printf("Najveci ugao ima 60 stepeni, 0 minuta i 0 sekundi.");
+        return 2;
+    }
+    int stepeni, minute, sekunde;
+    if (fabs(a-b)<=E && a<c){
+        d = acos((pow(a,2)+pow(b,2)-pow(c,2))/(2*a*b));
+        e = d*180/Pi;
+        stepeni = (int)e;
+        minute = (int)((e - stepeni)*60);
+        sekunde = (int)(((e - stepeni)*60 - minute)*60);
+        if(c==sqrt(pow(a,2) + pow(b,2)))
+        printf("Pravougli\n");
+        printf("Jednakokraki\n");
+        printf("Najveci ugao ima %d stepeni, %d minuta i %d sekundi.", stepeni, minute, sekunde);
+        return 3;
+    }
+    if (fabs(a-b)<=E && a>c){
+        d = acos((pow(b,2)+pow(c,2)-pow(a,2))/(2*c*b));
+        e = d*180/Pi;
+        stepeni = (int)e;
+        minute = (int)((e - stepeni)*60);
+        sekunde = (int)(((e - stepeni)*60 - minute)*60);
+        printf("Jednakokraki\n");
+        printf("Najveci ugao ima %d stepeni, %d minuta i %d sekundi.", stepeni, minute, sekunde);
+        return 4;
+    }
+    if (fabs(a-c)<=E && a>b){
+        d = acos((pow(b,2) + pow(c,2) - pow(a,2))/(2*c*b));
+        e = d*180/Pi;
+        stepeni = (int)e;
+        minute = (int)((e - stepeni)*60);
+        sekunde = (int)(((e - stepeni)*60 - minute)*60);
+        printf("Jednakokraki\n");
+        printf("Najveci ugao ima %d stepeni, %d minuta i %d sekundi.", stepeni, minute, sekunde);
+        return 5;
+    }
+    if (fabs(b-c)<=E && b<a){
+        d = acos((pow(b,2) + pow(c,2) - pow(a,2))/(2*c*b));
+        e = d*180/Pi;
+        stepeni = (int)e;
+        minute = (int)((e - stepeni)*60);
+        sekunde = (int)(((e - stepeni)*60 - minute)*60);
+        if(a==sqrt(pow(c,2) + pow(b,2)))
+        printf("Pravougli\n");
+        printf("Jednakokraki\n");
+        printf("Najveci ugao ima %d stepeni, %d minuta i %d sekundi.", stepeni, minute, sekunde);
+        return 6;
+    }
+    if (fabs(b-c)<=E && a>c){
+        d = acos((pow(a,2) + pow(c,2) - pow(b,2))/(2*c*a));
+        e = d*180/Pi;
+        stepeni = (int)e;
+        minute = (int)((e - stepeni)*60);
+        sekunde = (int)(((e - stepeni)*60 - minute)*60);
+        printf("Jednakokraki\n");
+        printf("Najveci ugao ima %d stepeni, %d minuta i %d sekundi.", stepeni, minute, sekunde);
+        return 7;
+    }
+    if (a>c && a>b){
+        d = acos((pow(b,2)+pow(c,2)-pow(a,2))/(2*c*b));
+        e = d*180/Pi;
+        stepeni = (int)e;
+        minute = (int)((e-stepeni)*60);
+        sekunde = (int)(((e-stepeni)*60-minute)*60);
+        if(a==sqrt(pow(b,2)+pow(c,2)))
+        printf("Pravougli\n");
+        printf("Raznostranicni\n");
+        printf("Najveci ugao ima %d stepeni, %d minuta i %d sekundi.", stepeni, minute, sekunde);
+        return 8;
+    }
+    if (b>a && b>c){
+        d = acos((pow(a,2)+pow(c,2)-pow(b,2))/(2*c*a));
+        e = d*180/Pi;
+        stepeni = (int)e;
+        minute = (int)((e-stepeni)*60);
+        sekunde = (int)(((e-stepeni)*60-minute)*60);
+        if(b==sqrt(pow(a,2)+pow(c,2)))
+        printf("Pravougli\n");
+        printf("Raznostranicni\n");
+        printf("Najveci ugao ima %d stepeni, %d minuta i %d sekundi.", stepeni, minute, sekunde);
+        return 9;
+    }
+    if (c>a && c>b){
+        d = acos((pow(a,2)+pow(b,2)-pow(c,2))/(2*a*b));
+        e = d*180/Pi;
+        stepeni = (int)e;
+        minute = (int)((e-stepeni)*60);
+        sekunde = (int)(((e-stepeni)*60-minute)*60);
+        if(c==sqrt(pow(a,2)+pow(b,2)))
+        printf("Pravougli\n");
+        printf("Raznostranicni\n");
+        printf("Najveci ugao ima %d stepeni, %d minuta i %d sekundi.", stepeni, minute, sekunde);
+        return 10;
+    }
+	return 0;
+}

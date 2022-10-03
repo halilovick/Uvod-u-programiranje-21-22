@@ -1,0 +1,29 @@
+#include <stdio.h>
+
+int main() {
+    int a;
+	printf("Unesite broj sekundi: ");
+    scanf("%d",&a);
+    if(a>=0){
+    int d = a / (24 * 3600);
+    a = a % (24 * 3600);
+    int h = a / 3600;
+    a %= 3600;
+    int m = a / 60;
+    a %= 60;
+    int s = a;
+    printf("Pretvoreno: %dd %dh %dm %ds", d,h,m,s);
+    }
+    else{
+    int b = -1 * a;
+    int d = b / (24 * 3600);
+    b = b % (24 * 3600);
+    int h = b / 3600;
+    b %= 3600;
+    int m = b / 60;
+    b %= 60;
+    int s = b;
+    printf("Pretvoreno: %dd %dh %dm %ds", d,h,m,s);
+    }
+	return 0;
+}
