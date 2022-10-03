@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int minmax2x(float* niz, int vel) {
+  int i;
+  float max = fabs(*niz);
+  float min = fabs(*niz);
+  for (i = 0; i < vel; i++) {
+    if (fabs(*niz) > max) {
+      max = fabs(*niz);
+    }
+    else if (fabs(*niz) < min) {
+      min = fabs(*niz);
+    }
+    niz++;
+  }
+  if (max > 2 * min) {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+/* Ovdje pisete funkciju minmax2x */
+
+int main() {
+  float niz1[5] = {3.3, 2.2, 1.1, 2.2, 3.3};
+  float niz2[5] = {3.3, 2.2, 3.3, 2.2, 3.3};
+  int rez1 = minmax2x(niz1, 5);
+  int rez2 = minmax2x(niz2, 5);
+  printf("%d %d", rez1, rez2);
+  return 0;
+}

@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int maxsuma(int *niz, int vel) {
+  int i, broj, suma, max = 0, maxsuma = 0;
+  for (i = 0; i < vel; i++) {
+    suma = 0;
+    if (*niz >= 0) {
+      broj = *niz;
+    } else {
+      broj = abs(*niz);
+    }
+    while (broj != 0) {
+      suma += broj % 10;
+      broj /= 10;
+    }
+    if (abs(suma) > abs(maxsuma)) {
+      max = *niz;
+      maxsuma = suma;
+    }
+    niz++;
+  }
+  return max;
+}
+
+int main() {}

@@ -1,0 +1,10 @@
+#include <stdio.h>
+
+void zamijeni_pokazivace(long long *pok1, long long *pok2) {
+  long long temp;
+  temp = *pok1;
+  *pok1 = *pok2;
+  *pok2 = temp;
+}
+
+int main() {}

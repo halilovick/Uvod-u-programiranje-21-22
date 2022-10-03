@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+void obrni_cifre(int* pok, int a) {
+  int i, x, obrnut, vrijednost;
+  for (i = 0; i < a; i++) {
+    x = 0;
+    obrnut = 0;
+    vrijednost = *pok;
+    while (vrijednost != 0) {
+      x = vrijednost % 10;
+      obrnut = obrnut * 10 + x;
+      vrijednost /= 10;
+    }
+    *pok = obrnut;
+    pok++;
+  }
+}
+/* Ovdje napisite funkciju obrni_cifre */
+
+int main() {
+  int niz1[5] = {1, 23, 321, 918, 33};
+  obrni_cifre(niz1, 5);
+  int i;
+  for (i = 0; i < 5; i++)
+    printf("%d ", niz1[i]);
+  return 0;
+}

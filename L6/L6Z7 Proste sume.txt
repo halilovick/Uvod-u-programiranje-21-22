@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int proste_sume(int *niz1, int n1, int *niz2, int n2) {
+  int i, j, sumaCifara, prost, vel = 0, broj;
+  for (i = 0; i < n1; i++) {
+    sumaCifara = 0;
+    prost = 0;
+    broj = abs(*niz1);
+    while (broj != 0) {
+      sumaCifara += broj % 10;
+      broj /= 10;
+    }
+    broj = abs(*niz1);
+    for (j = 2; j <= sumaCifara / 2; j++) {
+      if (sumaCifara % j == 0) {
+        prost = 1;
+        break;
+      }
+    }
+    if (prost == 0 && sumaCifara > 1 && vel < n2) {
+      *niz2 = *niz1;
+      niz2++;
+      vel++;
+    }
+    niz1++;
+  }
+  return vel;
+}
+
+int main() {}

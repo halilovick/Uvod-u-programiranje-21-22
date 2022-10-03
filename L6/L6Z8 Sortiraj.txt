@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+void sortiraj(double niz[], int n) {
+  double *i, *j, *min, temp;
+  for (i = niz; i < niz + n; i++) {
+    min = i;
+    for (j = i + 1; j < niz + n; j++) {
+      if (*j > *min) {
+        min = j;
+      }
+    }
+    temp = *min;
+    *min = *i;
+    *i = temp;
+  }
+}
+
+int main() {
+}

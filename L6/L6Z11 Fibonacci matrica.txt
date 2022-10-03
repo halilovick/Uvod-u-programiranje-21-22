@@ -1,0 +1,95 @@
+#include <math.h>
+#include <stdio.h>
+
+int provjeri(int matrica[100][100], int V) {
+  int i = 0, j = 0, k;
+  int a = 0;
+  for (k = 0; k < V; k++) {
+    j = 0;
+    while (matrica[i][j] != -1) {
+      if (matrica[i][j] <= 0) {
+        return 0;
+      }
+      if (matrica[i][j] != -1) {
+        a++;
+      }
+      j++;
+      if (j >= 100) {
+        return 0;
+      }
+    }
+    if (matrica[i][j] != -1) {
+      return 0;
+    }
+    if (i < V - 1) {
+      i++;
+    }
+  }
+  return 1;
+}
+
+int fibonacci_matrica(int matrica[100][100], int V) {
+  int i = 0, j = 0;
+  long int broj, x1, x2;
+  long double provjera1, provjera2;
+  int f = 0;
+  for (i = 0; i < V; i++) {
+    j = 0;
+    f = 0;
+    while (matrica[i][j] != -1) {
+      f = 0;
+      broj = matrica[i][j];
+      provjera1 = pow(broj, 2) * 5 + 4;
+      provjera2 = pow(broj, 2) * 5 - 4;
+      x1 = sqrt(provjera1);
+      x2 = sqrt(provjera2);
+      if (x1 * x1 == provjera1) {
+        f = 1;
+      }
+      if (x2 * x2 == provjera2) {
+        f = 1;
+      }
+      if (f == 0) {
+        return 0;
+      }
+      j++;
+    }
+  }
+  return 1;
+}
+
+int main() {
+  int V = 0, i, j;
+  int matrica[100][100];
+  int broj = 0;
+  while (V < 1 || V > 100) {
+    printf("Unesite visinu matrice: ");
+    scanf("%d", &V);
+  }
+  printf("Unesite matricu: ");
+  j = 0;
+  for (i = 0; i < V; i++) {
+    broj = 1;
+    j = 0;
+    while (broj != -1) {
+      do {
+        scanf("%d", &broj);
+      } while (broj < -1 || broj == 0);
+      matrica[i][j] = broj;
+      if (broj != -1) {
+        j++;
+      }
+    }
+  }
+  printf("\n");
+  if (provjeri(matrica, V)) {
+    printf("Matrica je validna.\n");
+  } else {
+    printf("Matrica nije validna.\n");
+  }
+  if (fibonacci_matrica(matrica, V)) {
+    printf("Matrica je Fibonacci matrica.\n");
+  } else {
+    printf("Matrica nije Fibonacci matrica.\n");
+  }
+}

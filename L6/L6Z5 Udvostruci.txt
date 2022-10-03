@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+void udvostruci(int *niz, int vel) {
+  int i;
+  for (i = 0; i < vel; i++) {
+    *niz *= 2;
+    niz++;
+  }
+}
+
+int main() {
+  int i, niz[3] = {1, 0, -2};
+  udvostruci(niz, 3);
+  for (i = 0; i < 3; i++)
+    printf("%d ", niz[i]);
+  return 0;
+}
