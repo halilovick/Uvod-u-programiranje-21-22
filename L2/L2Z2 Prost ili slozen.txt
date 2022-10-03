@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+int main() {
+    int a,i,x;
+    x=0;
+	printf("Unesite broj: ");
+    scanf("%d",&a);
+    if(a<=0){
+        printf("Broj nije prirodan.");
+        return 0;
+    }
+    else if(a==1){
+        printf("Broj nije ni prost ni slozen.");
+        return 0;
+    }
+    else{
+        for(i=2; i<=a/2; i++){
+            if(a%i==0){
+                x=1;
+            }
+        }
+        if(x==0){
+            printf("Broj je prost.");
+            return 0;
+        }
+        else{
+            printf("Broj je slozen.");
+            return 0;
+        }
+    }
+	return 0;
+}

@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+int main() {
+    int n, pd, dd, d, p, dv, j;
+	printf("Unesite iznos: ");
+    scanf("%d",&n);
+    pd=n/50;
+    printf("%d novcanica od 50 KM\n",pd);
+    dd=(n-pd*50)/20;
+    printf("%d novcanica od 20 KM\n",dd);
+    d=(n-pd*50-dd*20)/10;
+    printf("%d novcanica od 10 KM\n",d);
+    p=(n-pd*50-dd*20-d*10)/5;
+    printf("%d novcanica od 5 KM\n",p);
+    dv=(n-pd*50-dd*20-d*10-p*5)/2;
+    printf("%d novcanica od 2 KM\n",dv);
+    j=(n-pd*50-dd*20-d*10-p*5-dv*2);
+    printf("%d novcanica od 1 KM\n",j);
+	return 0;
+}

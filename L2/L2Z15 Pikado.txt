@@ -1,0 +1,94 @@
+#include <stdio.h>
+
+int main() {
+  char S1, F1, test;
+  int S2, F2, i, j, k, sumasabit, sumafadila, brojacsabit, brojacfadila;
+  do {
+    sumasabit = 0;
+    brojacsabit = 0;
+    printf("Unesite pogotke za Sabita: ");
+    for (i = 0; i < 10; i++) {
+      scanf(" %c", &S1);
+      if (S1 == '.') {
+        break;
+      }
+      scanf("%d", &S2);
+      if (S1 == 'S') {
+        sumasabit = sumasabit + 1 * S2;
+      } else if (S1 == 'D') {
+        sumasabit = sumasabit + 2 * S2;
+      } else if (S1 == 'T') {
+        sumasabit = sumasabit + 3 * S2;
+      } else if (S1 == 'X') {
+        sumasabit = sumasabit + 0 * S2;
+      } else if (S1 == 'O') {
+        sumasabit = sumasabit + 25;
+      } else if (S1 == 'I') {
+        sumasabit = sumasabit + 50;
+      } else if (S1 != 'S' && S1 != 'D' && S1 != 'T' && S1 != 'X' &&
+                 S1 != 'O' && S1 != 'I' && S1 != '.' && S1 != ' ') {
+        printf("Neispravni ulazni podaci.\n");
+        brojacsabit++;
+      }
+    }
+  } while (brojacsabit != 0);
+  do {
+    sumafadila = 0;
+    brojacfadila = 0;
+    printf("Unesite pogotke za Fadilu: ");
+    for (i = 0; i < 10; i++) {
+      scanf(" %c", &F1);
+      if (F1 == '.') {
+        break;
+      }
+      scanf("%d", &F2);
+      if (F1 == 'S') {
+        sumafadila = sumafadila + 1 * F2;
+      } else if (F1 == 'D') {
+        sumafadila = sumafadila + 2 * F2;
+      } else if (F1 == 'T') {
+        sumafadila = sumafadila + 3 * F2;
+      } else if (F1 == 'X') {
+        sumafadila = sumafadila + 0 * F2;
+      } else if (F1 == 'O') {
+        sumafadila = sumafadila + 25;
+      } else if (F1 == 'I') {
+        sumafadila = sumafadila + 50;
+      } else if (F1 != 'S' && F1 != 'D' && F1 != 'T' && F1 != 'X' &&
+                 F1 != 'O' && F1 != 'I' && F1 != '.' && F1 != ' ') {
+        printf("Neispravni ulazni podaci.\n");
+        brojacfadila++;
+      }
+    }
+  } while (brojacfadila != 0);
+  if (sumasabit > 301 && sumafadila > 301) {
+    printf(
+        "Oba igraca su premasila potrebni broj poena, rezultat je nerijesen.");
+  } else {
+    if (sumasabit == sumafadila) {
+      printf("Sabit je ostvario %d poena, Fadila je ostvarila %d poena. "
+             "Rezultat je nerijesen.",
+             sumasabit, sumafadila);
+    } else if (sumasabit > 301 && sumafadila < 301) {
+      int fadilaostatak;
+      fadilaostatak = 301 - sumafadila;
+      printf("Sabit je premasio potrebni broj poena, Fadila je ostvarila %d "
+             "poena. Pobjednik je Fadila, kojoj je ostalo jos %d poena do "
+             "pobjede.",
+             sumafadila, fadilaostatak);
+    } else if (sumasabit > sumafadila) {
+      int sabitostatak;
+      sabitostatak = 301 - sumasabit;
+      printf("Sabit je ostvario %d poena, Fadila je ostvarila %d poena. "
+             "Pobjednik je Sabit, kojem je ostalo jos %d poena do pobjede.",
+             sumasabit, sumafadila, sabitostatak);
+    } else if (sumafadila > sumasabit) {
+      int fadilaostatak;
+      fadilaostatak = 301 - sumafadila;
+      printf("Sabit je ostvario %d poena, Fadila je ostvarila %d poena. "
+             "Pobjednik je Fadila, kojoj je ostalo jos %d poena do pobjede.",
+             sumasabit, sumafadila, fadilaostatak);
+    }
+  }
+  return 0;
+}

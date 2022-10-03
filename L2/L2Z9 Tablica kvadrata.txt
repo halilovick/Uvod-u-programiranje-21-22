@@ -1,0 +1,48 @@
+#include <stdio.h>
+
+#define EPSILON 0.00001
+
+int main() {
+  int i, d, j;
+  double a, b, k, s, kv;
+  printf("Unesite interval [a b]: ");
+  scanf("%lf %lf", &a, &b);
+  printf("Unesite korak: ");
+  scanf("%lf", &k);
+  printf("Unesite sirinu ispisa: ");
+  scanf("%lf", &s);
+  printf("Unesite broj decimala: ");
+  scanf("%d", &d);
+  printf("X");
+  for (i = 0; i < 2 * s - 3; i++) {
+    printf(" ");
+  }
+  printf("X^2\n");
+  for (i = 0; i < 2 * s + 1; i++) {
+    printf("-");
+  }
+  printf("\n");
+  if (d > 0) {
+    s = s - 1;
+  } else {
+    s = s;
+  }
+  for (i = 0; i < 100; i++) {
+    printf("%.*lf", d, a);
+    kv = a * a;
+    for (j = 0; j < s - d - 1; j++) {
+      printf(" ");
+    }
+    printf("|");
+    for (j = 0; j < s - d - 1; j++) {
+      printf(" ");
+    }
+    printf("%.*lf", d, kv);
+    printf("\n");
+    a = a + k;
+    if (a-b>EPSILON) {
+      break;
+    }
+  }
+  return 0;
+}

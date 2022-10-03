@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+int main() {
+    int a, red, razmak;
+	printf("Unesite sirinu: ");
+    scanf("%d",&a);
+    for(razmak=1;razmak<a;razmak++){
+        printf(" ");
+    }
+    printf("+\n");
+    for(red=1;red<a;red++){
+        razmak=(a-red);
+        printf("%*s",razmak,"/");
+        razmak=2*red+1;
+        printf("%*s",razmak,"\\");
+        printf("\n");
+    }
+    for(red=a-1;red>0;red--){
+        razmak=(a-red);
+        printf("%*s",razmak,"\\");
+        razmak=2*red+1;
+        printf("%*s",razmak,"/");
+        printf("\n");
+    }
+    for(razmak=1;razmak<a;razmak++){
+        printf(" ");
+    }
+    printf("+");
+	return 0;
+}

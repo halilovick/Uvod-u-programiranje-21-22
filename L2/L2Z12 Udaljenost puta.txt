@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+int main() {
+  int i, d, suma, brojac;
+  brojac=0;
+  suma=0;
+  char t1, t2, x1, x2, x3, x4, temp1, temp2;
+  printf("Unesite pocetne tacke: ");
+  scanf("%c %c", &t1, &t2);
+  for (i = 0; i < 10; i++) {
+    printf("Unesite udaljenost(x udaljenost b): ");
+    scanf(" %c", &x1);
+    scanf(" %d", &d);
+    scanf(" %c", &x2);
+    if((x1!=temp2 && i!=0) || (x2==temp1 && i!=0) || (x2==x1 && i!=0)){
+        brojac=1;
+    }
+    else{
+        brojac=0;
+    }
+    suma=d+suma;
+    if(brojac==1){
+        printf("Niste unijeli dobar medjuput! Probajte ponovo\n");
+        suma=suma-d;
+    }
+    else{
+        temp1=x1;
+    temp2=x2;
+    }
+    if (x2==t2 && brojac==0) {
+      break;
+    }
+  }
+  printf("Udaljenost izmedju tacaka je %d metara.", suma);
+  return 0;
+}

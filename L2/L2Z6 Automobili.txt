@@ -1,0 +1,75 @@
+#include <stdio.h>
+
+int main() {
+    double i,C,B,S,V,P,suma;
+    float x;
+    char b;
+    C=0;
+    B=0;
+    S=0;
+    V=0;
+    P=0;
+    printf("Unesite vozila: ");
+    for(i=0;i<10000;i++){
+        scanf("%c",&b);
+        if(b=='C' || b=='c'){
+            C+=1;
+        }
+        else if(b=='B' || b=='b'){
+            B+=1;
+        }
+        else if(b=='S' || b=='s'){
+            S+=1;
+        }
+        else if(b=='V' || b=='v'){
+            V+=1;
+        }
+        else if(b=='P' || b=='p'){
+            P+=1;
+        }
+        else if(b=='K' || b=='k'){
+            break;
+        }
+        else{
+            printf("Neispravan unos\n");
+        }
+    }
+    suma=C+B+S+V+P;
+    printf("Ukupno evidentirano %g vozila.\n",suma);
+    if(C>=B && C>=S && C>=V && C>=P){
+        x=C*100/suma;
+        if(suma==0){
+            x=0;
+        }
+        printf("Najpopularnija boja je crna (%.2lf%%).",x);
+    }
+    else if(B>=C && B>=S && B>=V && B>=P){
+        x=B*100/suma;
+        if(suma==0){
+            x=0;
+        }
+        printf("Najpopularnija boja je bijela (%.2lf%%).",x);
+    }
+    else if(S>=B && S>=C && S>=V && S>=P){
+        x=S*100/suma;
+        if(suma==0){
+            x=0;
+        }
+        printf("Najpopularnija boja je siva (%.2lf%%).",x);
+    }
+    else if(V>=B && V>=S && V>=C && V>=P){
+        x=V*100/suma;
+        if(suma==0){
+            x=0;
+        }
+        printf("Najpopularnija boja je crvena (%.2lf%%).",x);
+    }
+    else if(P>=B && P>=S && P>=V && P>=C){
+        x=P*100/suma;
+        if(suma==0){
+            x=0;
+        }
+        printf("Najpopularnija boja je plava (%.2lf%%).",x);
+    }
+	return 0;
+}
