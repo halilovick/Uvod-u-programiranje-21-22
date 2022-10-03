@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+#define pi 3.14159265358979323846264338327950288
+
+struct Ugao {
+  int stepeni, minute, sekunde;
+};
+
+int izbaci(struct Ugao *niz, int vel, double x, double y) {
+  int i, j;
+  long double radijani;
+  for (i = 0; i < vel; i++) {
+    radijani = (niz[i].stepeni * pi + niz[i].minute * pi / 60 +
+                niz[i].sekunde * pi / 3600) /
+               180;
+    if (radijani > x && radijani < y) {
+      for (j = i; j < vel - 1; j++) {
+        niz[j] = niz[j + 1];
+      }
+      vel--;
+      i--;
+    }
+  }
+  return vel;
+}
+
+int main() {
+}

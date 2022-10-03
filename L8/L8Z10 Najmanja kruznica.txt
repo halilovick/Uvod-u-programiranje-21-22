@@ -1,0 +1,49 @@
+#include <math.h>
+#include <stdio.h>
+
+struct Tacka {
+  double x, y;
+};
+
+struct Kruznica {
+  struct Tacka centar;
+  double poluprecnik;
+};
+
+struct Kruznica obuhvat(struct Tacka *niz, int vel) {
+  int i;
+  double xmin, ymin, xmax, ymax, r;
+  struct Tacka C;
+  struct Kruznica K;
+  xmin = niz[0].x;
+  ymin = niz[0].y;
+  xmax = xmin;
+  ymax = ymin;
+  for (i = 0; i < vel; i++) {
+    if (niz[i].x > xmax) {
+      xmax = niz[i].x;
+    }
+    if (niz[i].y > ymax) {
+      ymax = niz[i].y;
+    }
+    if (niz[i].x < xmin) {
+      xmin = niz[i].x;
+    }
+    if (niz[i].y < ymin) {
+      ymin = niz[i].y;
+    }
+  }
+  C.x = xmax / 2 + xmin / 2;
+  C.y = ymax / 2 + ymin / 2;
+  K.centar.x = C.x;
+  K.centar.y = C.y;
+  r = sqrt(pow((C.x - xmin), 2) + pow((C.y - ymax), 2));
+  K.poluprecnik = r;
+  return K;
+}
+
+void ispis_kruznice(struct Kruznica K) {
+  printf("(%.2lf,%.2lf) %.2lf", K.centar.x, K.centar.y, K.poluprecnik);
+}
+
+int main() {}

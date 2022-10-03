@@ -1,0 +1,32 @@
+#include <math.h>
+#include <stdio.h>
+
+#define epsilon 0.0000001
+
+struct Tacka3d {
+  double x, y, z;
+};
+
+int komplanarne_tacke(struct Tacka3d t1, struct Tacka3d t2, struct Tacka3d t3,
+                      struct Tacka3d t4) {
+  double red1 = t1.x * t2.y * t3.z + t1.x * t3.y * t4.z + t1.x * t4.y * t2.z;
+  double red2 = t2.x * t1.y * t4.z + t2.x * t3.y * t1.z + t2.x * t4.y * t3.z;
+  double red3 = t3.x * t1.y * t2.z + t3.x * t2.y * t4.z + t3.x * t4.y * t1.z;
+  double red4 = t4.x * t1.y * t3.z + t4.x * t2.y * t1.z + t4.x * t3.y * t2.z;
+  double red5 = -t1.x * t2.y * t4.z - t1.x * t3.y * t2.z - t1.x * t4.y * t3.z;
+  double red6 = -t2.x * t1.y * t3.z - t2.x * t3.y * t4.z - t2.x * t4.y * t1.z;
+  double red7 = -t3.x * t1.y * t4.z - t3.x * t2.y * t1.z - t3.x * t4.y * t2.z;
+  double red8 = -t4.x * t1.y * t2.z - t4.x * t2.y * t3.z - t4.x * t3.y * t1.z;
+  double proizvod = red1 + red2 + red3 + red4 + red5 + red6 + red7 + red8;
+  if (red1 == red2 && red2 == red3 && red3 == red4 && red5 == red6 &&
+      red6 == red7 && red7 == red8) {
+    return 0;
+  }
+  if (fabs(proizvod) < epsilon) {
+    return 1;
+  } else {
+    return -1;
+  }
+}
+
+int main() {}

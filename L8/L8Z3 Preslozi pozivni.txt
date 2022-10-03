@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <string.h>
+
+struct Grad {
+  char naziv[20];
+  int pozivni_broj;
+};
+
+void preslozi_pozivni(struct Grad *niz, int vel, int pozivni_broj) {
+  int i;
+  int a = 0;
+  for (i = 0; i < vel; i++) {
+    if (niz[i].pozivni_broj == pozivni_broj) {
+      int j;
+      char temp[20];
+      strcpy(temp, niz[i].naziv);
+      for (j = i; j > a; j--) {
+        strcpy(niz[j].naziv, niz[j - 1].naziv);
+      }
+      strcpy(niz[a].naziv, temp);
+      a++;
+    }
+  }
+}
+
+int main() {
+  struct Grad niz[100];
+  int brojGradova, i, pozivni_broj;
+  printf("Unesite broj gradova: ");
+  scanf("%d", &brojGradova);
+  for (i = 0; i < brojGradova; i++) {
+    printf("Unesite naziv %d. grada i njegov pozivni broj: ", i + 1);
+    scanf("%s %d", niz[i].naziv, &niz[i].pozivni_broj);
+  }
+  printf("Unesite trazeni pozivni broj: ");
+  scanf("%d", &pozivni_broj);
+  preslozi_pozivni(niz, brojGradova, pozivni_broj);
+  for (i = 0; i < brojGradova; i++) {
+    printf("%s ", niz[i].naziv);
+  }
+}

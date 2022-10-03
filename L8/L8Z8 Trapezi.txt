@@ -1,0 +1,49 @@
+#include <math.h>
+#include <stdio.h>
+
+struct Tacka {
+  double x, y;
+};
+
+struct Trapez {
+  struct Tacka A, B, C, D;
+};
+
+void trapezi(struct Trapez *niz, int n, double *obimi, double *povrsine) {
+  int i, j;
+  double duzinaAB, duzinaBC, duzinaCD, duzinaDA, obim, visina, k1, k2, n1, n2,
+      x, y;
+  for (i = 0; i < n; i++) {
+    duzinaAB = sqrt(pow((niz[i].A.x - niz[i].B.x), 2) +
+                    pow((niz[i].A.y - niz[i].B.y), 2));
+    duzinaBC = sqrt(pow((niz[i].B.x - niz[i].C.x), 2) +
+                    pow((niz[i].B.y - niz[i].C.y), 2));
+    duzinaCD = sqrt(pow((niz[i].C.x - niz[i].D.x), 2) +
+                    pow((niz[i].C.y - niz[i].D.y), 2));
+    duzinaDA = sqrt(pow((niz[i].D.x - niz[i].A.x), 2) +
+                    pow((niz[i].D.y - niz[i].A.y), 2));
+    obim = duzinaAB + duzinaBC + duzinaCD + duzinaDA;
+    *obimi = obim;
+    obimi++;
+    if ((niz[i].A.y - niz[i].B.y) == 0) {
+      visina = niz[i].C.y - niz[i].A.y;
+    } else if ((niz[i].A.x - niz[i].B.x) == 0) {
+      visina = niz[i].C.x - niz[i].A.x;
+    } else {
+      k1 = (niz[i].A.y - niz[i].B.y) / (niz[i].A.x - niz[i].B.x);
+      k2 = -1 / k1;
+      n2 = niz[i].C.y - k2 * niz[i].C.x;
+      n1 = niz[i].A.y - k1 * niz[i].A.x;
+      x = (n2 - n1) / (k1 - k2);
+      y = k1 * x + n1;
+      visina = sqrt(pow((x - niz[i].C.x), 2) + pow((y - niz[i].C.y), 2));
+    }
+    if (visina < 0) {
+      visina *= -1;
+    }
+    *povrsine = (duzinaAB + duzinaCD) * visina / 2;
+    povrsine++;
+  }
+}
+
+int main() {}

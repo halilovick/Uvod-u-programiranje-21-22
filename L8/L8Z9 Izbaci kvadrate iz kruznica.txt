@@ -1,0 +1,68 @@
+#include <math.h>
+#include <stdio.h>
+
+#define EPSILON 0.000001
+
+struct Tacka {
+  double x, y;
+};
+struct Kruznica {
+  struct Tacka centar;
+  double poluprecnik;
+};
+struct Kvadrat {
+  struct Tacka dl;
+  double stranica;
+};
+
+int izbaci_visak(struct Kruznica *kr, int velkr, struct Kvadrat *kv,
+                 int velkv) {
+  int k, i, j, unutra, ostaviti;
+  double x1, x2, x3, x4, y1, y2, y3, y4, p, q, r, p1, p2, p3, p4;
+  for (i = 0; i < velkv; i++) {
+    ostaviti = 0;
+    for (j = 0; j < velkr; j++) {
+      unutra = 0;
+      x1 = kv[i].dl.x;
+      y1 = kv[i].dl.y;
+      x2 = kv[i].dl.x + kv[i].stranica;
+      y2 = kv[i].dl.y;
+      x3 = kv[i].dl.x;
+      y3 = kv[i].dl.y + kv[i].stranica;
+      x4 = kv[i].dl.x + kv[i].stranica;
+      y4 = kv[i].dl.y + kv[i].stranica;
+      p = kr[j].centar.x;
+      q = kr[j].centar.y;
+      r = kr[j].poluprecnik;
+      p1 = pow((x1 - p), 2) + pow((y1 - p), 2);
+      p2 = pow((x2 - p), 2) + pow((y2 - p), 2);
+      p3 = pow((x3 - p), 2) + pow((y3 - p), 2);
+      p4 = pow((x4 - p), 2) + pow((y4 - p), 2);
+      if (p1 - pow(r, 2) <= EPSILON) {
+        unutra++;
+      }
+      if (p2 - pow(r, 2) <= EPSILON) {
+        unutra++;
+      }
+      if (p3 - pow(r, 2) <= EPSILON) {
+        unutra++;
+      }
+      if (p4 - pow(r, 2) <= EPSILON) {
+        unutra++;
+      }
+      if (unutra == 4) {
+        ostaviti++;
+      }
+    }
+    if (ostaviti == 0) {
+      for (k = i; k < velkv - 1; k++) {
+        kv[k] = kv[k + 1];
+      }
+      velkv--;
+      i--;
+    }
+  }
+  return velkv;
+}
+
+int main() {}

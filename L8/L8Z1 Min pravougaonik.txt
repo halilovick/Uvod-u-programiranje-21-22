@@ -1,0 +1,51 @@
+#include <stdio.h>
+
+struct Tacka {
+  double x, y;
+};
+
+struct Pravougaonik {
+  struct Tacka dolje_lijevo;
+  struct Tacka gore_desno;
+};
+
+struct Pravougaonik min_pravougaonik(struct Tacka *niz, int n) {
+  int i;
+  double x1, x2, y1, y2;
+  x1 = niz[0].x;
+  x2 = niz[0].x;
+  y1 = niz[0].y;
+  y2 = niz[0].y;
+  for (i = 0; i < n; i++) {
+    if (niz[i].x > x1) {
+      x1 = niz[i].x;
+    }
+    if (niz[i].y > y1) {
+      y1 = niz[i].y;
+    }
+    if (niz[i].x < x2) {
+      x2 = niz[i].x;
+    }
+    if (niz[i].y < y2) {
+      y2 = niz[i].y;
+    }
+  }
+  struct Tacka gore_desno = {x1, y1};
+  struct Tacka dolje_lijevo = {x2, y2};
+  struct Pravougaonik p = {dolje_lijevo, gore_desno};
+  return p;
+}
+
+int main() {
+  int brojTacaka, i;
+  struct Tacka niz[100];
+  printf("Unesite broj tacaka: ");
+  scanf("%d", &brojTacaka);
+  for (i = 0; i < brojTacaka; i++) {
+    printf("Unesite koordinate x i y tacke %d: ", i + 1);
+    scanf("%lf %lf", &niz[i].x, &niz[i].y);
+  }
+  struct Pravougaonik p = min_pravougaonik(niz, brojTacaka);
+  printf("Minimalni pravougaonik za ove tacke ima uglove: \n(%g,%g) - (%g,%g)",
+         p.dolje_lijevo.x, p.dolje_lijevo.y, p.gore_desno.x, p.gore_desno.y);
+}

@@ -1,0 +1,48 @@
+#include <math.h>
+#include <stdio.h>
+
+struct Tacka {
+  double koordinata[100];
+};
+
+int izbaci_najblize(struct Tacka *niz, int vel, int dimenzija) {
+  int i, j, k, indeksi, indeksj;
+  double q, p, d, temp, najmanji = 1000;
+  d = 0;
+  for (i = 0; i < vel; i++) {
+    for (j = i + 1; j < vel; j++) {
+      for (k = 0; k < dimenzija; k++) {
+        q = niz[i].koordinata[k];
+        p = niz[j].koordinata[k];
+        d += pow((q - p), 2);
+      }
+      d = sqrt(d);
+      if (d < najmanji) {
+        najmanji = d;
+        indeksi = i;
+        indeksj = j;
+      }
+      temp = d;
+      d = 0;
+    }
+  }
+  int vel1 = vel;
+  if (vel1 > 1) {
+    for (i = indeksi; i < vel - 1; i++) {
+      niz[i] = niz[i + 1];
+    }
+    vel--;
+    if (indeksj > indeksi) {
+      indeksj--;
+    }
+  }
+  if (vel1 > 1) {
+    for (i = indeksj; i < vel1 - 1; i++) {
+      niz[i] = niz[i + 1];
+    }
+    vel--;
+  }
+  return vel;
+}
+
+int main() {}
