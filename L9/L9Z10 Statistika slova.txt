@@ -1,0 +1,79 @@
+#include <stdio.h>
+#include <sys/types.h>
+
+void unos(char *niz, int vel) {
+  int i = 0;
+  char z = getchar();
+  if (z == '\n') {
+    z = getchar();
+  }
+  while (z != '\n' && i < vel - 1) {
+    niz[i] = z;
+    i++;
+    z = getchar();
+  }
+  niz[i] = '\0';
+}
+
+int main() {
+  FILE *ulaz;
+  FILE *izlaz;
+  char datoteka[255];
+  char ch, ispis;
+  int temp1, temp2, vel, h[127], i, niz1[127], niz2[127], j;
+  for (i = 0; i < 127; i++) {
+    h[i] = 0;
+  }
+  printf("Unesite naziv ulazne datoteke: ");
+  unos(datoteka, 255);
+  ulaz = fopen(datoteka, "r");
+  izlaz = fopen("statistika.txt", "w");
+  do {
+    ch = fgetc(ulaz);
+    if (ch > 96 && ch < 123) {
+      ch = ch - 32;
+    }
+    if (ch > 64 && ch < 91) {
+      h[ch]++;
+    }
+  } while (ch != EOF);
+  j = 0;
+  for (i = 0; i < 127; i++) {
+    if (h[i] != 0) {
+      niz1[j] = i;
+      niz2[j] = h[i];
+      j++;
+    }
+  }
+  vel = j;
+  for (i = 0; i < vel; i++) {
+    for (j = i + 1; j < vel; j++) {
+      if (niz2[i] < niz2[j]) {
+        temp1 = niz1[i];
+        niz1[i] = niz1[j];
+        niz1[j] = temp1;
+        temp2 = niz2[i];
+        niz2[i] = niz2[j];
+        niz2[j] = temp2;
+      }
+    }
+  }
+  for (i = 0; i < vel; i++) {
+    for (j = i + 1; j < vel; j++) {
+      if (niz2[i] == niz2[j]) {
+        if (niz1[i] > niz1[j]) {
+          temp1 = niz1[i];
+          niz1[i] = niz1[j];
+          niz1[j] = temp1;
+        }
+      }
+    }
+  }
+  for (i = 0; i < j; i++) {
+    ispis = niz1[i];
+    fprintf(izlaz, "%c", ispis);
+  }
+  fclose(ulaz);
+  fclose(izlaz);
+  return 0;
+}

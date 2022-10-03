@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void unos(char *niz, int vel) {
+  int i = 0;
+  char z = getchar();
+  if (z == '\n') {
+    z = getchar();
+  }
+  while (z != '\n' && i < vel - 1) {
+    niz[i] = z;
+    i++;
+    z = getchar();
+  }
+  niz[i] = '\0';
+}
+
+int main() {
+  FILE *ulaz;
+  char datoteka[255], ch;
+  int duzina = 0, i, a = 0, vel, max;
+  printf("Unesite naziv datoteke: ");
+  unos(datoteka, 255);
+  ulaz = fopen(datoteka, "r");
+  if (ulaz == NULL) {
+    printf("Datoteka %s ne postoji", datoteka);
+    return 0;
+  }
+  do {
+    ch = fgetc(ulaz);
+    if ((ch > 64 && ch < 91) || (ch > 96 && ch < 123)) {
+      duzina++;
+    }
+    a++;
+    if (ch == -1) {
+      break;
+    }
+  } while (ch != ' ');
+  max = duzina;
+  vel = (a - 1) - max;
+  duzina = 0;
+    do {
+      ch = fgetc(ulaz);
+      if ((ch > 64 && ch < 91) || (ch > 96 && ch < 123)) {
+        duzina++;
+      }
+      if (!((ch > 64 && ch < 91) || (ch > 96 && ch < 123))) {
+        if (duzina > max) {
+          max = duzina;
+          vel = a - max;
+        }
+        duzina = 0;
+      }
+      a++;
+    } while (ch != EOF);
+  fseek(ulaz, vel, SEEK_SET);
+  for (i = 0; i < max; i++) {
+    ch = fgetc(ulaz);
+    printf("%c", ch);
+  }
+  return 0;
+}

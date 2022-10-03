@@ -1,0 +1,49 @@
+#include <stdio.h>
+
+void unesi_niz() {
+  FILE *ulaz;
+  int i, vel = 0, x, niz[100];
+  for (i = 0; i < 100; i++) {
+    scanf("%d", &x);
+    if (x == -1) {
+      break;
+    } else {
+      niz[i] = x;
+      vel++;
+    }
+  }
+  ulaz = fopen("niz.bin", "wb");
+  if (ulaz == NULL) {
+    printf("Greska");
+    return;
+  }
+  fwrite(niz, sizeof(int), vel, ulaz);
+  fclose(ulaz);
+}
+
+double srednja_vrijednost() {
+  int i, niz[100];
+  double sr, suma = 0, vel;
+  FILE *ulaz;
+  ulaz = fopen("niz.bin", "rb");
+  if (ulaz == NULL) {
+    printf("Greska");
+    return 0;
+  }
+  vel = fread(niz, sizeof(int), 100, ulaz);
+  if (vel == 0) {
+    return 0;
+  }
+  for (i = 0; i < vel; i++) {
+    suma += niz[i];
+  }
+  fclose(ulaz);
+  sr = suma / vel;
+  return sr;
+}
+
+int main() {
+  unesi_niz();
+  printf("%g\n", srednja_vrijednost());
+  return 0;
+}

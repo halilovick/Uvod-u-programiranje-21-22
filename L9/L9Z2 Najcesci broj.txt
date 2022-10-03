@@ -1,0 +1,57 @@
+#include <math.h>
+#include <stdio.h>
+
+int main() {
+  char ch;
+  int i, broj = 0, max = 0, x = 0, b, a = 0, brojCifara = 0, neg = 0;
+  FILE *ulaz;
+  FILE *izlaz;
+  ulaz = fopen("zadatak.txt", "r");
+  izlaz = fopen("rjesenje.txt", "w");
+  do {
+    do {
+      ch = fgetc(ulaz);
+      if (ch < 48 || ch > 57) {
+        a++;
+      }
+      if (ch == -1) {
+        break;
+      }
+    } while (ch < 48 || ch > 57);
+    if (ch == -1) {
+      break;
+    }
+    brojCifara = 0;
+    while (ch > 47 && ch < 58) {
+      ch = fgetc(ulaz);
+      brojCifara++;
+    }
+    broj = 0;
+    fseek(ulaz, (a - 1), SEEK_SET);
+    ch = fgetc(ulaz);
+    if (ch == '-') {
+      neg = 1;
+    }
+    fseek(ulaz, a, SEEK_SET);
+    a += brojCifara;
+    for (i = brojCifara; i > 0; i--) {
+      ch = fgetc(ulaz);
+      b = ch - 48;
+      broj += (b * pow(10, (i - 1)));
+    }
+    if (neg == 1) {
+      broj *= -1;
+    }
+    neg = 0;
+    if (x == 0) {
+      max = broj;
+      x = 1;
+    }
+    if (broj > max) {
+      max = broj;
+    }
+  } while (ch != EOF);
+  fprintf(izlaz, "%d", max);
+  fclose(izlaz);
+  return 0;
+}

@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+int main() {
+  char ch, unos;
+  int pozicija, c, a = 0, poz = 0, temp = 0, duzina = 1, maxduzina = 0;
+  FILE *ulaz;
+  ulaz = fopen("ulaz.txt", "r");
+  FILE *izlaz;
+  izlaz = fopen("izlaz.txt", "w");
+  do {
+    ch = fgetc(ulaz);
+    a++;
+    c = ch;
+    while (c == temp + 1) {
+      temp = c;
+      ch = fgetc(ulaz);
+      a++;
+      c = ch;
+      duzina++;
+      if (ch == EOF) {
+        break;
+      }
+    }
+    if (duzina > maxduzina) {
+      maxduzina = duzina;
+      poz = a;
+    }
+    duzina = 1;
+    temp = c;
+  } while (ch != EOF);
+  pozicija = poz - maxduzina - 1;
+  fseek(ulaz, pozicija, SEEK_SET);
+  while (maxduzina > 0) {
+    unos = fgetc(ulaz);
+    fprintf(izlaz, "%c", unos);
+    maxduzina--;
+  }
+  fclose(ulaz);
+  fclose(izlaz);
+}

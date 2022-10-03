@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main() {
+  FILE *ulaz;
+  FILE *izlaz;
+  char x, y, ch;
+  int ax, ay;
+  printf("Unesite znakove x i y: ");
+  scanf("%c %c", &x, &y);
+  ax = x;
+  ay = y;
+  if (ay < ax) {
+    printf("Pogresan unos");
+    return 0;
+  }
+  ulaz = fopen("input.txt", "r");
+  izlaz = fopen("output.txt", "w");
+  do {
+    ch = fgetc(ulaz);
+    if (ch >= ax && ch <= ay) {
+      fprintf(izlaz, "%c", ch);
+    }
+  } while (ch != EOF);
+  fclose(ulaz);
+  fclose(izlaz);
+  return 0;
+}

@@ -1,0 +1,109 @@
+#include <stdio.h>
+
+int main() {
+  FILE *ulaz;
+  ulaz = fopen("genetski_kod.txt", "r");
+  int t1, t2, t3;
+  int a1, a2, a3;
+  char ch, ispis;
+  int pozicija, a = 0, poz, duzina = 0, maxduzina = 0;
+  if (ulaz != NULL) {
+    fseek(ulaz, 0, SEEK_END);
+    int vel = ftell(ulaz);
+    if (vel == 0) {
+      goto pogresan;
+    }
+  }
+  fseek(ulaz, 0, SEEK_SET);
+  do {
+    ch = fgetc(ulaz);
+    if (ch == EOF) {
+      break;
+    }
+    if (ch != 65 && ch != 67 && ch != 71 && ch != 84) {
+      goto pogresan;
+    }
+    a++;
+    t1 = ch;
+    ch = fgetc(ulaz);
+    if (ch == EOF) {
+      break;
+    }
+    if (ch != 65 && ch != 67 && ch != 71 && ch != 84) {
+      goto pogresan;
+    }
+    a++;
+    t2 = ch;
+    ch = fgetc(ulaz);
+    if (ch == EOF) {
+      break;
+    }
+    if (ch != 65 && ch != 67 && ch != 71 && ch != 84) {
+      goto pogresan;
+    }
+    a++;
+    t3 = ch;
+    do {
+      ch = fgetc(ulaz);
+      if (ch == EOF) {
+        break;
+      }
+      if (ch != 65 && ch != 67 && ch != 71 && ch != 84) {
+        goto pogresan;
+      }
+      a++;
+      duzina++;
+      a1 = ch;
+      ch = fgetc(ulaz);
+      if (ch == EOF) {
+        break;
+      }
+      if (ch != 65 && ch != 67 && ch != 71 && ch != 84) {
+        goto pogresan;
+      }
+      a++;
+      duzina++;
+      a2 = ch;
+      ch = fgetc(ulaz);
+      if (ch == EOF) {
+        break;
+      }
+      if (ch != 65 && ch != 67 && ch != 71 && ch != 84) {
+        goto pogresan;
+      }
+      a++;
+      duzina++;
+      a3 = ch;
+    } while (a1 == t1 && a2 == t2 && a3 == t3);
+    if (ch == EOF) {
+      break;
+    }
+    if (duzina > maxduzina) {
+      maxduzina = duzina;
+      poz = a;
+    }
+    fseek(ulaz, a - 3, SEEK_SET);
+    a -= 3;
+    duzina = 0;
+  } while (ch != EOF);
+  if (maxduzina == 0) {
+    poz = a;
+  }
+  if (a % 3 == 0) {
+    pozicija = poz - maxduzina - 3;
+    fseek(ulaz, pozicija, SEEK_SET);
+    int duzinaispisa = 3;
+    while (duzinaispisa > 0) {
+      ispis = fgetc(ulaz);
+      printf("%c", ispis);
+      duzinaispisa--;
+    }
+  } else {
+  pogresan:
+    printf("Pogresan format");
+  }
+  fclose(ulaz);
+  // printf(" %d %d %d", a, maxduzina, poz);
+  printf("\n");
+  return 0;
+}

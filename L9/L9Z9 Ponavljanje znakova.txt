@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+int main() {
+  FILE *ulaz;
+  FILE *izlaz;
+  int n, duzina, a = 0, i;
+  char ch, temp;
+  printf("Unesite broj: ");
+  scanf("%d", &n);
+  if (n < 1) {
+    printf("Pogresan unos");
+    return 0;
+  }
+  ulaz = fopen("input.txt", "r");
+  izlaz = fopen("output.txt", "w");
+  duzina = 1;
+  do {
+    temp = fgetc(ulaz);
+    a++;
+    // temp = ch;
+    ch = fgetc(ulaz);
+    a++;
+    if (ch == temp) {
+      duzina++;
+      a--;
+      fseek(ulaz, a, SEEK_SET);
+    } else {
+      a--;
+      fseek(ulaz, a, SEEK_SET);
+      // ch = fgetc(ulaz);
+      if (duzina >= n) {
+        for (i = 0; i < duzina; i++) {
+          fprintf(izlaz, "%c", temp);
+        }
+      }
+      duzina = 1;
+    }
+  } while (ch != EOF);
+  fclose(ulaz);
+  fclose(izlaz);
+  return 0;
+}
