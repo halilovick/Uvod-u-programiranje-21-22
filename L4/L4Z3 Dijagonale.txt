@@ -1,0 +1,36 @@
+#include <math.h>
+#include <stdio.h>
+
+int main() {
+  int n, i, j, x, y;
+  x = 0;
+  double matrica[100][100];
+  do {
+    printf("Unesite dimenziju matrice: ");
+    scanf("%d", &n);
+    if (n < 0 || n > 100) {
+      printf("Neispravan unos!\n");
+    }
+  } while (n < 0 || n > 100);
+  printf("Unesite clanove matrice: ");
+  for (i = 0; i < n; i++) {
+    for (j = 0; j < n; j++) {
+      scanf("%lf ", &matrica[i][j]);
+    }
+  }
+  for (i = 0; i < n; i++) {
+    for (j = 0; j < n; j++) {
+      if (i == j) {
+        if (matrica[i][j] == matrica[n - 1 - i][j]) {
+          x++;
+        }
+      }
+    }
+  }
+  if (n == x) {
+    printf("DA");
+  } else {
+    printf("NE");
+  }
+  return 0;
+}

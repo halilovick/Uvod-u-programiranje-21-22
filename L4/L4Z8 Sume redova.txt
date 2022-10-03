@@ -1,0 +1,63 @@
+#include <stdio.h>
+
+int main() {
+  int M, N, i, j, sumareda[100], brojacreda = 0, sumakolone[100],
+                                 brojackolone = 0;
+  double niz[100][100];
+  do {
+    printf("Unesite brojeve M i N: ");
+    scanf("%d %d", &M, &N);
+    if (M < 0 || M > 100 || N < 0 || N > 100) {
+      printf("Neispravan unos!\n");
+    }
+  } while (M < 0 || M > 100 || N < 0 || N > 100);
+  printf("Unesite clanove matrice: ");
+  for (i = 0; i < M; i++) {
+    for (j = 0; j < N; j++) {
+      scanf("%lf", &niz[i][j]);
+    }
+  }
+  for (i = 0; i < M; i++) {
+    sumareda[i] = 0;
+  }
+  for (i = 0; i < M; i++) {
+    for (j = 0; j < N; j++) {
+      sumareda[i] = niz[i][j] + sumareda[i];
+    }
+  }
+  for (i = 1; i < M; i++) {
+    if (sumareda[i] == sumareda[i - 1]) {
+      brojacreda++;
+    }
+  }
+  for (j = 0; j <= N; j++) {
+    sumakolone[j] = 0;
+  }
+  for (j = 0; j < N; j++) {
+    for (i = 0; i < M; i++) {
+      sumakolone[j] = niz[i][j] + sumakolone[j];
+    }
+  }
+  for (j = 1; j < N; j++) {
+    if (sumakolone[j] == sumakolone[j - 1]) {
+      brojackolone++;
+    }
+  }
+  if (M == 1) {
+    brojacreda = M - 1;
+  }
+  if (N == 1) {
+    brojackolone = N - 1;
+  }
+  if (brojacreda == M - 1) {
+    printf("DA\n");
+  } else {
+    printf("NE\n");
+  }
+  if (brojackolone == N - 1) {
+    printf("DA");
+  } else {
+    printf("NE");
+  }
+  return 0;
+}

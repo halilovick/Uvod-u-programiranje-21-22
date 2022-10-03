@@ -1,0 +1,90 @@
+#include <stdio.h>
+
+int main() {
+  int matrica1[100][100], matrica2[100][100], broj, matrica3[100][100], i, j, k,
+      s1 = 0, s2 = 0;
+  double kolicnik, sumaj = 0, v1, v2;
+  printf("Unesite elemente 1. matrice: \n");
+  i = 0;
+  j = 0;
+  for (k = 0; k < 1000; k++) {
+    scanf("%d", &broj);
+    if (broj != -1 && broj != -2) {
+      matrica1[i][j] = broj;
+      j++;
+    } else if (broj == -1) {
+      sumaj += j;
+      i++;
+      j = 0;
+    } else if (broj == -2) {
+      sumaj += j;
+      i++;
+      v1 = i;
+      break;
+    }
+    if (j > 100) {
+      printf("Prekoracena dimenzija matrice!");
+      return 0;
+    }
+  }
+  kolicnik = sumaj / v1;
+  if (kolicnik != j) {
+    printf("Ovo nije matrica!");
+    return 0;
+  } else {
+    s1 = j;
+  }
+  printf("Unesite elemente 2. matrice: \n");
+  i = 0;
+  j = 0;
+  sumaj = 0;
+  for (k = 0; k < 1000; k++) {
+    scanf("%d", &broj);
+    if (broj != -1 && broj != -2) {
+      matrica2[i][j] = broj;
+      j++;
+    } else if (broj == -1) {
+      sumaj += j;
+      i++;
+      j = 0;
+    } else if (broj == -2) {
+      sumaj += j;
+      i++;
+      v2 = i;
+      break;
+    }
+    if (j > 100) {
+      printf("Prekoracena dimenzija matrice!");
+      return 0;
+    }
+  }
+  kolicnik = sumaj / v2;
+  if (kolicnik != j) {
+    printf("Ovo nije matrica!");
+    return 0;
+  } else {
+    s2 = j;
+  }
+  int suma = 0;
+  for (i = 0; i < v1; i++) {
+    for (j = 0; j < s2; j++) {
+      for (k = 0; k < s1; k++) {
+        suma = suma + matrica1[i][k] * matrica2[k][j];
+      }
+      matrica3[i][j] = suma;
+      suma = 0;
+    }
+  }
+  if (s1 != v2) {
+    printf("Matrice nisu pogodne za mnozenje.");
+    return 0;
+  }
+  printf("Matrice su pogodne za mnozenje. Matricni proizvod je:\n");
+  for (i = 0; i < 2; i++) {
+    for (j = 0; j < 2; j++) {
+      printf("%3d ", matrica3[i][j]);
+    }
+    printf("\n");
+  }
+  return 0;
+}

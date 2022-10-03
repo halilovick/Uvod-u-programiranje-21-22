@@ -1,0 +1,80 @@
+#include <stdio.h>
+
+int main() {
+  int M, N, i, j, k, brojaccifara = 0, x;
+  double matrica[100][100], matrica1[100][100], matrica2[100][100],
+      ssr = 0, sr = 0, sk = 0, ksr, r = 0, rsr;
+  do {
+    printf("Unesite vrijednosti M i N: ");
+    scanf("%d %d", &M, &N);
+    if (M <= 0 || M > 100 || N <= 0 || N > 100) {
+      printf("Vrijednosti su van opsega!\n");
+    }
+  } while (M <= 0 || M > 100 || N <= 0 || N > 100);
+  printf("Unesite clanove matrice: \n");
+  for (i = 0; i < M; i++) {
+    for (j = 0; j < N; j++) {
+      scanf("%lf", &matrica[i][j]);
+    }
+  }
+  for (i = 0; i < M; i++) {
+    for (j = 0; j < N; j++) {
+      matrica1[i][j] = matrica[i][j];
+    }
+  }
+  for (i = 0; i < M; i++) {
+    for (j = 0; j < N; j++) {
+      ssr += matrica[i][j];
+    }
+  }
+  sr = ssr / (M * N);
+  for (i = 0; i < M; i++) {
+    for (j = 0; j < N; j++) {
+      sk += matrica[i][j];
+    }
+    ksr = sk / N;
+    sk = 0;
+    if (ksr > sr) {
+      for (k = i; k < M; k++) {
+        for (j = 0; j < N; j++) {
+          matrica[k][j] = matrica[k + 1][j];
+        }
+      }
+      M--;
+      i--;
+    }
+  }
+  for (j = 0; j < N; j++) {
+    for (i = 0; i < M; i++) {
+      r += matrica[i][j];
+    }
+    rsr = r / M;
+    r = 0;
+    if (rsr > sr) {
+      for (k = j; k < N; k++) {
+        for (i = 0; i < M; i++) {
+          matrica[i][k] = matrica[i][k + 1];
+        }
+      }
+      N--;
+      j--;
+    }
+  }
+  printf("Nakon izbacivanja matrica glasi:\n");
+  for (i = 0; i < M; i++) {
+    for (j = 0; j < N; j++) {
+      x = matrica[i][j];
+      do {
+        brojaccifara++;
+        x /= 10;
+      } while (x != 0);
+      for (k = 0; k < 4 - brojaccifara; k++) {
+        printf(" ");
+      }
+      brojaccifara = 0;
+      printf("%.1lf", matrica[i][j]);
+    }
+    printf("\n");
+  }
+  return 0;
+}

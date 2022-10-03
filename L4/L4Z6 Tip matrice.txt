@@ -1,0 +1,103 @@
+#include <stdio.h>
+
+int main() {
+  double matrica[100][100];
+  int N, i, j, brnul = 0, brjed = 0, brdia = 0, brgor = 0, brdon = 0,
+               brspor = 0, non = 0;
+  do {
+    printf("Unesite broj N: ");
+    scanf("%d", &N);
+  } while (N > 100);
+  printf("Unesite elemente matrice: ");
+  for (i = 0; i < N; i++) {
+    for (j = 0; j < N; j++) {
+      scanf("%lf", &matrica[i][j]);
+    }
+  }
+  for (i = 0; i < N; i++) {
+    for (j = 0; j < N; j++) {
+      if (matrica[i][j] == 0) {
+        brnul++;
+        if (brnul == N * N) {
+          printf("Nul-matrica");
+          return 0;
+        } else {
+          non = 1;
+        }
+      }
+    }
+  }
+  for (i = 0; i < N; i++) {
+    for (j = 0; j < N; j++) {
+      if (i == j) {
+        brjed = matrica[i][j] + brjed;
+      }
+    }
+  }
+  if (brjed == N) {
+    printf("Jedinicna matrica");
+    return 0;
+  } else {
+    non = 1;
+  }
+  for (i = 0; i < N; i++) {
+    for (j = 0; j < N; j++) {
+      if (i != j) {
+        brdia = matrica[i][j] + brdia;
+      }
+    }
+  }
+  if (brdia == 0) {
+    printf("Dijagonalna matrica");
+    return 0;
+  } else {
+    non = 1;
+  }
+  for (i = 0; i < N; i++) {
+    for (j = 0; j < N; j++) {
+      if (i > j) {
+        brgor = matrica[i][j] + brgor;
+      }
+    }
+  }
+  if (brgor == 0) {
+    printf("Gornja trougaona matrica");
+    return 0;
+  } else {
+    non = 1;
+  }
+  for (i = 0; i < N; i++) {
+    for (j = 0; j < N; j++) {
+      if (i < j) {
+        brdon = matrica[i][j] + brdon;
+        if (matrica[i][j] != 0) {
+          break;
+        }
+      }
+    }
+  }
+  if (brdon == 0) {
+    printf("Donja trougaona matrica");
+    return 0;
+  } else {
+    non = 1;
+  }
+  for (i = 0; i < N; i++) {
+    for (j = 0; j < N; j++) {
+      if (i + j != N - 1) {
+        brspor = matrica[i][j] + brspor;
+      }
+    }
+  }
+  if (brspor == 0) {
+    printf("Sporedna dijagonalna matrica");
+    return 0;
+  } else {
+    non = 1;
+  }
+  if (non == 1) {
+    printf("Nista od navedenog");
+    return 0;
+  }
+  return 0;
+}

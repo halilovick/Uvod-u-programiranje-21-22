@@ -1,0 +1,82 @@
+#include <stdio.h>
+
+int main() {
+  int N, i, j, k, brojac = 0;
+  double matrica[100][100], sredina;
+  do {
+    printf("Unesite broj N: ");
+    scanf("%d", &N);
+    if ((N < 1 || N > 100) || N % 2 == 0) {
+      printf("Neispravna vrijednost!\n");
+    }
+  } while ((N < 1 || N > 100) || N % 2 == 0);
+  printf("Unesite matricu: ");
+  for (i = 0; i < N; i++) {
+    for (j = 0; j < N; j++) {
+      scanf("%lf", &matrica[i][j]);
+    }
+  }
+  for (i = 0; i < N; i++) {
+    for (j = 0; j < N; j++) {
+      if (i == j && i + j == N - 1) {
+        sredina = matrica[i][j];
+        for (k = 0; k < i; k++) {
+          if (matrica[i][j - 1] == sredina - 1) {
+            brojac = 1;
+          } else {
+            brojac = 0;
+            break;
+          }
+          if (matrica[i][j + 1] == sredina - 1) {
+            brojac = 1;
+          } else {
+            brojac = 0;
+            break;
+          }
+          if (matrica[i + 1][j] == sredina - 1) {
+            brojac = 1;
+          } else {
+            brojac = 0;
+            break;
+          }
+          if (matrica[i - 1][j] == sredina - 1) {
+            brojac = 1;
+          } else {
+            brojac = 0;
+            break;
+          }
+          if (matrica[i - 1][j - 1] == sredina - 1) {
+            brojac = 1;
+          } else {
+            brojac = 0;
+            break;
+          }
+          if (matrica[i + 1][j + 1] == sredina - 1) {
+            brojac = 1;
+          } else {
+            brojac = 0;
+            break;
+          }
+          if (matrica[i + 1][j - 1] == sredina - 1) {
+            brojac = 1;
+          } else {
+            brojac = 0;
+            break;
+          }
+          if (matrica[i - 1][j + 1] == sredina - 1) {
+            brojac = 1;
+          } else {
+            brojac = 0;
+            break;
+          }
+        }
+      }
+    }
+  }
+  if (brojac == 1) {
+    printf("DA");
+  } else {
+    printf("NE");
+  }
+  return 0;
+}

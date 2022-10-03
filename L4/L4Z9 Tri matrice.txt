@@ -1,0 +1,71 @@
+#include <stdio.h>
+
+int main() {
+  int A[100][100], B[100][100], C[100][100], i, j, M, N;
+  int isti_elementi = 0;
+  do {
+    printf("Unesite brojeve M i N: ");
+    scanf("%d %d", &M, &N);
+  } while (M < 1 || N < 1 || M > 100 || N > 100);
+
+  printf("Unesite clanove matrice A: ");
+  for (i = 0; i < M; i++)
+    for (j = 0; j < N; j++)
+      scanf("%d", &A[i][j]);
+  printf("Unesite clanove matrice B: ");
+  for (i = 0; i < M; i++)
+    for (j = 0; j < N; j++)
+      scanf("%d", &B[i][j]);
+  printf("Unesite clanove matrice C: ");
+  for (i = 0; i < M; i++)
+    for (j = 0; j < N; j++)
+      scanf("%d", &C[i][j]);
+
+  /* === OVDJE UBACITI KOD === */
+  int x = 0, y = 0, sabirakA = 0, proizvodA = 1, sabirakB = 0, proizvodB = 1,
+      sabirakC = 0, proizvodC = 1;
+  for (i = 0; i < M; i++) {
+    for (j = 0; j < N; j++) {
+      sabirakA += A[i][j];
+      proizvodA *= A[i][j];
+      sabirakB += B[i][j];
+      proizvodB *= B[i][j];
+      sabirakC += C[i][j];
+      proizvodC *= C[i][j];
+    }
+  }
+  if (proizvodA == 0 && proizvodB == 0 && proizvodC == 0) {
+    proizvodA = 1;
+    proizvodB = 1;
+    proizvodC = 1;
+    for (i = 0; i < M; i++) {
+      for (j = 0; j < N; j++) {
+        if (A[i][j] != 0) {
+          proizvodA *= A[i][j];
+        }
+        if (B[i][j] != 0) {
+          proizvodB *= B[i][j];
+        }
+        if (C[i][j] != 0) {
+          proizvodC *= C[i][j];
+        }
+      }
+    }
+  }
+  if (sabirakA == sabirakB && sabirakA == sabirakC) {
+    x = 1;
+  }
+  if (proizvodA == proizvodB && proizvodA == proizvodC) {
+    y = 1;
+  }
+  if (x == 1 && y == 1) {
+    isti_elementi = 1;
+  } else {
+    isti_elementi = 0;
+  }
+  if (isti_elementi)
+    printf("DA\n");
+  else
+    printf("NE\n");
+  return 0;
+}

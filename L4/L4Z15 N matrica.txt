@@ -1,0 +1,57 @@
+#include <stdio.h>
+
+int main() {
+  int matrica[100][100][100], suma[100], suma1 = 0;
+  int N, p, q, i, j, k, a = 0;
+  do {
+    printf("Unesite broj matrica: ");
+    scanf("%d", &N);
+    if (N < 1 || N > 10) {
+      printf("Broj matrica mora biti u opsegu [1,10]\n");
+    }
+  } while (N < 1 || N > 10);
+  do {
+    printf("Unesite dimenzije matrice (p q): ");
+    scanf("%d %d", &p, &q);
+    if (p < 1 || p > 5 || q < 1 || q > 5) {
+      printf("p i q moraju biti u opsegu [1,5]\n");
+    }
+  } while (p < 1 || p > 5 || q < 1 || q > 5);
+  for (i = 0; i < N; i++) {
+    printf("\nMatrica br. %d\n", i + 1);
+    for (j = 0; j < p; j++) {
+      printf("%d. red: ", j + 1);
+      for (k = 0; k < q; k++) {
+        scanf("%d", &matrica[i][j][k]);
+        suma1 += matrica[i][j][k];
+      }
+    }
+    suma[a] = suma1;
+    a++;
+    suma1 = 0;
+  }
+  printf("\nSume za sve matrice, format \"matrica: suma\": \n");
+  for (i = 0; i < N; i++) {
+    printf("%d: %d", i + 1, suma[i]);
+    if (i < N - 1) {
+      printf(", ");
+    }
+  }
+  int najvece, temp;
+  temp = suma[0];
+  printf("\nMatrica s najvecom sumom:\n");
+  for (i = 0; i < N; i++) {
+    if (suma[i] > temp) {
+      temp = suma[i];
+      najvece = i;
+    }
+  }
+  int max = najvece;
+  for (i = 0; i < p; i++) {
+    for (j = 0; j < q; j++) {
+      printf("%4d", matrica[max][i][j]);
+    }
+    printf("\n");
+  }
+  return 0;
+}
