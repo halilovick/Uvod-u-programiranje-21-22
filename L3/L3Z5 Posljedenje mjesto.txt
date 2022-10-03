@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+int main() {
+    int i,S;
+    S=0;
+    double niz[100],x;
+	for(i=1;i<=100;i++){
+        printf("Unesite %d. element (-1 za kraj unosa): ",i);
+        scanf("%lf",&niz[i]);
+        S=i+1;
+        if(niz[i]==-1){
+            break;
+        }
+    }
+    printf("Unesite broj za pretragu: ");
+    scanf("%lf",&x);
+    for(i=S-1;i>0;i--){
+        if(niz[i]==x){
+            printf("Broj %g je unesen kao %d. broj po redu.",x,i);
+            return 0;
+        }
+    }
+    for(i=0;i<100;i++){
+        if(niz[i]!=x){
+            printf("Broj %g se ne nalazi medju unesenim brojevima!",x);
+            return 0;
+        }
+    }
+	return 0;
+}

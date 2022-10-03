@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+int main() {
+	int niz[100], i, vel, suma;
+	
+	printf("Unesite broj elemenata niza: ");
+	scanf("%d",&vel);
+	printf("Unesite %d brojeva: ",vel);
+	for(i=0; i<vel; i++)
+		scanf("%d",&niz[i]);
+
+	/* === OVDJE UBACITI KOD === */
+    int j;
+    suma=0;
+    for(i=0;i<vel;i++){
+        if(niz[i]%2==0){
+            for(j=i+1;j<vel;j++){
+                niz[j-1]=niz[j];
+            }
+            vel--;
+            i--;
+    }
+    }
+    for (i=0; i<vel; i++){
+        suma+=niz[i];
+    }
+    
+	printf("Niz je:\n");
+	for (i=0; i<vel; i++)
+		printf(" %d,", niz[i]);
+	printf("\nSuma je: %d", suma);
+	return 0;
+}

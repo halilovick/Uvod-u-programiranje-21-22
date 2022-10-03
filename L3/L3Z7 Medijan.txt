@@ -1,0 +1,34 @@
+#include <stdio.h>
+
+int main() {
+    int n,i,j;
+    double niz[500],y;
+	printf("Unesite broj studenata: ");
+    scanf("%d",&n);
+    printf("Unesite bodove na ispitu: ");
+    for(i=0;i<n;i++){
+        scanf("%lf",&niz[i]);
+        if(niz[i]<0 || niz[i]>20){
+            printf("Rezultat ispita nije u trazenom intervalu");
+            return 0;
+        }
+    }
+    for(i=0;i<n;i++){
+        for(j=i+1;j<n;j++){
+            if(niz[i]>niz[j]){
+                y=niz[i];
+                niz[i]=niz[j];
+                niz[j]=y;
+            }
+        }
+    }
+    double medijan=0;
+    if(n%2==0){
+        medijan=(niz[(n-1)/2]+niz[n/2])/2.0;
+    }
+    else{
+        medijan=niz[n/2];
+    }
+    printf("Medijan je: %g",medijan);
+	return 0;
+}

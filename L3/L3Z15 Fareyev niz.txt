@@ -1,0 +1,33 @@
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+  int n, i = 2, vel;
+  double niz[100], x1 = 0, y1 = 1, x2 = 1, y2, x, y = 0, kolicnik;
+  printf("Unesite broj n: ");
+  scanf("%d", &n);
+  y2 = n;
+  niz[0] = x1 / y1;
+  niz[1] = x2 / y2;
+  while (y != 1.0 && niz[1] < 1.00) {
+    x = floor((y1 + n) / y2) * x2 - x1;
+    y = floor((y1 + n) / y2) * y2 - y1;
+    kolicnik = x / y;
+    niz[i] = kolicnik;
+    i++;
+    if (i >= 100) {
+      i = 100;
+      break;
+    }
+    x1 = x2;
+    x2 = x;
+    y1 = y2;
+    y2 = y;
+  }
+  vel = i;
+  for (i = 0; i < vel; i++) {
+    printf("%.3lf ", niz[i]);
+  }
+  return 0;
+}

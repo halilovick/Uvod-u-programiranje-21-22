@@ -1,0 +1,71 @@
+#include <math.h>
+#include <stdio.h>
+
+#define E 0.0001
+
+int main() {
+  int n, i, j, brojac = 0, pon;
+  double niz1[200], niz2[200], niz3[200], niz4[200];
+  long double sv;
+  do {
+    printf("Unesite broj clanova niza: ");
+    scanf("%d", &n);
+  } while (n < 1 || n > 100);
+  printf("Unesite niz: ");
+  for (i = 0; i < n; i++) {
+    scanf("%lf", &niz1[i]);
+  }
+  for (i = 1; i < n + brojac; i++) {
+    if (fabs(niz1[i] - 2 * niz1[i - 1]) < E) {
+      sv = (niz1[i - 1] + niz1[i]) / 2;
+      brojac++;
+      for (j = n + brojac - 1; j >= i; j--) {
+        niz1[j + 1] = niz1[j];
+      }
+      niz1[i] = sv;
+      i++;
+    }
+  }
+  printf("Nakon ubacivanja niz glasi: \n");
+  for (i = 0; i < n + brojac; i++) {
+    printf("%g ", niz1[i]);
+  }
+  printf("\n");
+  for (i = 0; i < n + brojac; i++) {
+    niz2[i] = niz1[i];
+    niz4[i] = -1;
+  }
+  for (i = 0; i < n + brojac; i++) {
+    int s, a;
+    a = niz3[i];
+    s = niz2[i] * 10;
+    niz3[i] = s % 10;
+  }
+  for (i = 0; i < n + brojac; i++) {
+    for (j = i + 1; j < n + brojac; j++) {
+      if (niz3[i] > niz3[j]) {
+        int t = niz3[i];
+        niz3[i] = niz3[j];
+        niz3[j] = t;
+      }
+    }
+  }
+  for (i = 0; i < n + brojac; i++) {
+    pon = 1;
+    for (j = i + 1; j < n + brojac; j++) {
+      if (niz3[i] == niz3[j]) {
+        pon++;
+        niz4[j] = 0;
+      }
+    }
+    if (niz4[i] != 0) {
+      niz4[i] = pon;
+    }
+  }
+  for (i = 0; i < n + brojac; i++) {
+    if (niz4[i] != 0) {
+      printf("Cifra %g se ponavlja %g puta.\n", niz3[i], niz4[i]);
+    }
+  }
+  return 0;
+}

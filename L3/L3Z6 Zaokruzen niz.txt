@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    int n,i,d,o,y;
+    double niz[20],x,j,r;
+    do{
+	printf("Unesite broj elemenata niza: ");
+    scanf("%d",&n);
+    if(n<=0 || n>20){
+        printf("Unos neispravan!\n");
+    }
+    }
+    while(n<=0 || n>20);
+    printf("Unesite %d brojeva: ",n);
+    for(i=0;i<n;i++){
+        scanf("%lf",&niz[i]);
+    }
+    printf("Unesite broj decimala za zaokruzivanje: ");
+    scanf("%d",&d);
+    printf("Unesite broj decimala za ispis: ");
+    scanf("%d",&o);
+    printf("{");
+    for(i=0;i<n;i++){
+        y=pow(10,d);
+        x=round(niz[i]*y)/y;
+        if(x==-0){
+            x=0;
+        }
+        printf("%.*lf",o,x); 
+        if(i<n-1){
+            printf(", ");
+        }
+    }
+    printf("}");
+	return 0;
+}

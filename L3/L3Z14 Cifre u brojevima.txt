@@ -1,0 +1,45 @@
+#include <stdio.h>
+
+int main() {
+  int i, h[10], vel = 0, temp, c, broj = 0, x = 0;
+  double a, niz[100];
+  printf("Unesite brojeve: ");
+  for (i = 0; i < 100; i++) {
+    scanf("%lf", &a);
+    if (a <= 0) {
+      break;
+    } else {
+      niz[i] = a;
+      vel++;
+    }
+  }
+  for (i = 0; i < 10; i++) {
+    h[i] = 0;
+  }
+  for (i = 0; i < vel; i++) {
+    temp = niz[i];
+    while (temp != 0) {
+      c = temp % 10;
+      h[c]++;
+      temp /= 10;
+    }
+  }
+  for (i = 0; i < 10; i++) {
+    if (h[i] != 0) {
+      broj++;
+    }
+  }
+  printf("Cifre: ");
+  for (i = 0; i < 10; i++) {
+    if (h[i] != 0) {
+      printf("%d", i);
+      x++;
+      if (x < broj) {
+        printf(",");
+      } else if (broj == x) {
+        printf(".");
+      }
+    }
+  }
+  return 0;
+}

@@ -1,0 +1,53 @@
+#include <stdio.h>
+
+int main() {
+  int i, brojac = 0, n, temp;
+  double niz[100], min = 0, x;
+  for (i = 0; i < 100; i++) {
+    scanf("%lf", &x);
+    if (x == -1) {
+      break;
+    } else {
+      niz[i] = x;
+    }
+  }
+  n = i;
+  if (n < 2) {
+    printf("Nedovoljno elemenata");
+    return 0;
+  } else {
+    for (i = 1; i < n; i++) {
+      if (niz[i - 1] == niz[i]) {
+        printf("Niz nije v-niz");
+        return 0;
+      }
+    }
+    for (i = 1; i < n; i++) {
+      if (niz[i - 1] < niz[i]) {
+        min = niz[i - 1];
+        if (min > 0) {
+          temp = i;
+          break;
+        }
+      }
+    }
+    if (min > 0) {
+      for (i = temp; i < n; i++) {
+        if (niz[i] > min) {
+          brojac = 1;
+        } else {
+          printf("Niz nije v-niz");
+          return 0;
+        }
+      }
+      if (brojac == 1) {
+        printf("Niz je v-niz");
+        return 0;
+      } else {
+        printf("Niz nije v-niz");
+        return 0;
+      }
+    }
+    return 0;
+  }
+}
