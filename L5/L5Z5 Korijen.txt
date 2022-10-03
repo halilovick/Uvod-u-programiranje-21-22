@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+int korijen(int a) {
+  int i;
+  for (i = 0; i <= a; i++) {
+    if (a == i * i)
+      return i;
+  }
+  return -1;
+}
+
+int main() {
+  int broj;
+  scanf("%d", &broj);
+  printf("%d", korijen(broj));
+  return 0;
+}

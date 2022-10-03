@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+int obrnut(int broj) {
+  int x = 0;
+  while (broj != 0) {
+    x = 10 * x + broj % 10;
+    broj /= 10;
+  }
+  return x;
+}
+
+int main() {
+  int broj, obrnuto;
+  scanf("%d", &broj);
+  printf("%d", obrnut(broj));
+  return 0;
+}

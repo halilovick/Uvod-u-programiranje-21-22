@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+
+int slucajni(int broj){
+    double x;
+    x = sqrt(broj);
+    double y;
+    y = x;
+    y *= pow(10, 12);
+    y = floor(y);
+    y = fmod(y, pow(10,12));
+    y /= pow(10, 4);
+    return y;
+}
+
+int main() {
+    return 1;
+}

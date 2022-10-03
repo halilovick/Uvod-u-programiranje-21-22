@@ -1,0 +1,18 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int Random(int a, int b) {
+  int broj, i;
+  broj = (rand() % (b - a + 1)) + a;
+  return broj;
+}
+
+int main() {
+  int a, b, broj;
+  scanf("%d", &a);
+  scanf("%d", &b);
+  srand(time(0));
+  printf("%d", Random(a, b));
+  return 0;
+}

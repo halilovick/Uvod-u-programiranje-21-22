@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int iste_cifre(int a, int b) {
+  int i, h1[10], h2[10], brojac1 = 0, brojac2 = 0, brojac3 = 0;
+  a = abs(a);
+  for (i = 0; i < 10; i++) {
+    h1[i] = 0;
+    h2[i] = 0;
+  }
+  while (a > 0) {
+    h1[a % 10]++;
+    a /= 10;
+  }
+  b = abs(b);
+  while (b > 0) {
+    h2[b % 10]++;
+    b /= 10;
+  }
+  for (i = 0; i < 10; i++) {
+    if (h1[i] > 0 && h2[i] > 0) {
+      brojac1++;
+    }
+    if (h1[i] > 0) {
+      brojac2++;
+    }
+    if (h2[i] > 0) {
+      brojac3++;
+    }
+  }
+  if ((brojac1 == brojac2) && (brojac2 == brojac3)) {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
+int main() {
+  int a, b;
+  printf("Unesite broj a: ");
+  scanf("%d", &a);
+  printf("Unesite broj b: ");
+  scanf("%d", &b);
+  if (iste_cifre(a, b)) {
+    printf("Brojevi a i b se sastoje od istih cifara.");
+  } else {
+    printf("Brojevi a i b se ne sastoje od istih cifara.");
+  }
+}

@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int vrati_najveci_stepen(int n){
+    int i, suma=1, a=0;
+    do{
+        suma=suma*2;
+        if(suma<=n){
+            a++;
+        }
+        else{
+            return a;
+        }
+    }
+    while(suma<=n);
+    return a;
+}
+
+int main() {
+    int n;
+    printf("Unesite n: ");
+    scanf("%d", &n);
+    printf("Rezultat je %d.", vrati_najveci_stepen(n));
+    return 0;
+}

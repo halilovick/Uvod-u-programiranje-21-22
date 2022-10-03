@@ -1,0 +1,118 @@
+#include <stdio.h>
+
+int dva_od_tri(int nizA[], int velA, int nizB[], int velB, int nizC[],
+               int velC) {
+  int i, j, k, rez = 0, a = 0;
+  for (i = 0; i < velA; i++) {
+    for (j = i + 1; j < velA; j++) {
+      if (nizA[i] == nizA[j]) {
+        for (k = j; k < velA - 1; k++) {
+          nizA[k] = nizA[k + 1];
+        }
+        velA--;
+        j--;
+      }
+    }
+  }
+  for (i = 0; i < velB; i++) {
+    for (j = i + 1; j < velB; j++) {
+      if (nizB[i] == nizB[j]) {
+        for (k = j; k < velB - 1; k++) {
+          nizB[k] = nizB[k + 1];
+        }
+        velB--;
+        j--;
+      }
+    }
+  }
+  for (i = 0; i < velC; i++) {
+    for (j = i + 1; j < velC; j++) {
+      if (nizC[i] == nizC[j]) {
+        for (k = j; k < velC - 1; k++) {
+          nizC[k] = nizC[k + 1];
+        }
+        velC--;
+        j--;
+      }
+    }
+  }
+  for (i = 0; i < velA; i++) {
+    for (j = 0; j < velB; j++) {
+      if (nizA[i] == nizB[j]) {
+        a = 0;
+        for (k = 0; k < velC; k++) {
+          if (nizA[i] == nizC[k]) {
+            a++;
+          }
+        }
+        if (a == 0) {
+          rez++;
+        }
+        break;
+      }
+    }
+  }
+  for (i = 0; i < velA; i++) {
+    for (j = 0; j < velC; j++) {
+      if (nizA[i] == nizC[j]) {
+        a = 0;
+        for (k = 0; k < velB; k++) {
+          if (nizA[i] == nizB[k]) {
+            a++;
+          }
+        }
+        if (a == 0) {
+          rez++;
+        }
+        break;
+      }
+    }
+  }
+  for (i = 0; i < velB; i++) {
+    for (j = 0; j < velC; j++) {
+      if (nizB[i] == nizC[j]) {
+        a = 0;
+        for (k = 0; k < velA; k++) {
+          if (nizB[i] == nizA[k]) {
+            a++;
+          }
+        }
+        if (a == 0) {
+          rez++;
+        }
+        break;
+      }
+    }
+  }
+  return rez;
+}
+
+int main() {
+  int A[100], B[100], C[100], velA, velB, velC, i, rez;
+  printf("Unesite niz A (-1 za kraj): ");
+  for (i = 0; i < 100; i++) {
+    scanf("%d", &A[i]);
+    if (A[i] == -1)
+      break;
+  }
+  velA = i;
+  printf("Unesite niz B (-1 za kraj): ");
+  for (i = 0; i < 100; i++) {
+    scanf("%d", &B[i]);
+    if (B[i] == -1)
+      break;
+  }
+  velB = i;
+  printf("Unesite niz C (-1 za kraj): ");
+  for (i = 0; i < 100; i++) {
+    scanf("%d", &C[i]);
+    if (C[i] == -1)
+      break;
+  }
+  velC = i;
+
+  rez = dva_od_tri(A, velA, B, velB, C, velC);
+
+  printf("%d clanova se nalaze u dva od tri niza.", rez);
+  return 0;
+}

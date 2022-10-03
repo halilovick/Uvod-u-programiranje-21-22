@@ -1,0 +1,62 @@
+#include <stdio.h>
+
+int matrice_permutacija(double A[100][100], double B[100][100],
+                        double C[100][100], int M, int N) {
+  int i, j, k;
+  double nizA[10000], nizB[10000], nizC[10000], temp;
+  k = 0;
+  for (i = 0; i < M; i++) {
+    for (j = 0; j < N; j++) {
+      nizA[k] = A[i][j];
+      nizB[k] = B[i][j];
+      nizC[k] = C[i][j];
+      k++;
+    }
+  }
+  for (i = 0; i < k; i++) {
+    for (j = 0; j < k; j++) {
+      if (nizA[i] > nizA[j]) {
+        temp = nizA[i];
+        nizA[i] = nizA[j];
+        nizA[j] = temp;
+      }
+      if (nizB[i] > nizB[j]) {
+        temp = nizB[i];
+        nizB[i] = nizB[j];
+        nizB[j] = temp;
+      }
+      if (nizC[i] > nizC[j]) {
+        temp = nizC[i];
+        nizC[i] = nizC[j];
+        nizC[j] = temp;
+      }
+    }
+  }
+  for (i = 0; i < k; i++) {
+    if (nizA[i] != nizB[i] || nizA[i] != nizC[i] || nizC[i] != nizB[i]) {
+      return 0;
+    }
+  }
+  return 1;
+}
+
+int main() {
+  /* AT1: Nema ponavljanja u matrici */
+
+  double A[100][100] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+  double B[100][100] = {{4, 1, 9}, {7, 8, 3}, {6, 2, 5}};
+  double C[100][100] = {{8, 4, 6}, {5, 2, 1}, {7, 9, 3}};
+  printf("%d ", matrice_permutacija(A, B, C, 3, 3));
+
+  /* Dodajemo ponavljanje */
+  C[2][2] = 1;
+  printf("%d ", matrice_permutacija(A, B, C, 3, 3));
+
+  /* Sada je opet ok jer smo samo zamijenili dva elementa */
+  C[1][2] = 3;
+  printf("%d ", matrice_permutacija(A, B, C, 3, 3));
+
+  /* Dodajemo element kojeg nema u polaznoj matrici */
+  B[2][2] = 10;
+  printf("%d ", matrice_permutacija(A, B, C, 3, 3));
+}

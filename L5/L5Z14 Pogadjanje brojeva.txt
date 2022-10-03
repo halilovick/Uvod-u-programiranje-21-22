@@ -1,0 +1,48 @@
+#include <stdio.h>
+
+int daj_sljedeci_broj(int n) {
+  static int v = 100;
+  static int l = 0;
+  int x, temp;
+  x = (v - l) / 2 + l;
+  if (n == -1) {
+    v = x;
+    x = (v - l) / 2 + l;
+  }
+  if (n == 1) {
+    l = x;
+    x = (v - l) / 2 + l;
+    if (x > 99) {
+      return temp;
+    }
+  }
+  temp = x;
+  return x;
+}
+
+int main() {
+  char a;
+  int x;
+  printf("Zamislite neki broj...\n");
+  printf("Da li je taj broj 50? ");
+  scanf("%c", &a);
+  if (a == 'M') {
+    x = daj_sljedeci_broj(-1);
+  } else if (a == 'V') {
+    x = daj_sljedeci_broj(1);
+  }
+  while (a != 'J') {
+    printf("Da li je taj broj %d? ", x);
+    scanf(" %c", &a);
+    if (a == 'M') {
+      x = daj_sljedeci_broj(-1);
+    } else if (a == 'V') {
+      x = daj_sljedeci_broj(1);
+    } else if (a == 'J') {
+      printf("Pogodio sam!");
+      return 0;
+    } else {
+      printf("Pogresan unos, probajte ponovo.\n");
+    }
+  }
+}

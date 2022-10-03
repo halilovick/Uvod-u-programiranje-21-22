@@ -1,0 +1,55 @@
+#include <math.h>
+#include <stdio.h>
+
+double stepen(double x) {
+  static double a = 0;
+  static int b = 0;
+  int i;
+  double y = 1;
+  if (a != x) {
+    b = 0;
+    a = x;
+  }
+  b++;
+  for (i = 0; i < b; i++) {
+    y = y * x;
+  }
+  return y;
+}
+
+void stepenuj_niz(double A[], int s[], int duzina) {
+  int i, j;
+  double x = 0, y;
+  for (i = 0; i < duzina; i++) {
+    if (i != 0 && A[i] == x) {
+      y = stepen(0);
+    }
+    x = A[i];
+    for (j = 0; j < s[i]; j++) {
+      A[i] = stepen(x);
+    }
+  }
+}
+/* Ovdje napisite vase funkcije */
+
+int main() {
+  int n, i, niz2[10000];
+  double niz[10000];
+  printf("Unesite velicinu za oba niza: ");
+  scanf("%d", &n);
+  printf("Unesite niz realnih brojeva: ");
+  for (i = 0; i < n; i++) {
+    scanf("%lf", &niz[i]);
+  }
+  printf("Unesite niz cijelih brojeva: ");
+  for (i = 0; i < n; i++) {
+    scanf("%d", &niz2[i]);
+  }
+  stepenuj_niz(niz, niz2, n);
+  printf("Nakon stepenovanja niz je: \n");
+  for (i = 0; i < n; i++) {
+    printf("%g ", niz[i]);
+  }
+
+  return 0;
+}

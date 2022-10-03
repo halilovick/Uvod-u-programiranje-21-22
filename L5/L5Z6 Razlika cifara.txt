@@ -1,0 +1,29 @@
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+void oduzmi_cifre(int niz[], int vel) {
+  int i, brojCifri, temp1, broj1, broj2, rezultat;
+  for (i = 0; i < vel; i++) {
+    rezultat = 0;
+    brojCifri = 1;
+    temp1 = niz[i];
+    while (temp1 != 0) {
+      broj1 = temp1 % 10;
+      temp1 /= 10;
+      if (temp1 == 0) {
+        continue;
+      }
+      if (temp1 / 10 == 0) {
+        rezultat += abs(broj1 - temp1) * pow(10, brojCifri - 1);
+      } else {
+        broj2 = temp1 % 10;
+        rezultat += abs(broj2 - broj1) * pow(10, brojCifri - 1);
+      }
+      brojCifri++;
+    }
+    niz[i] = rezultat;
+  }
+}
+
+int main() {}
